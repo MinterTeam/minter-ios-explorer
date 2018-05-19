@@ -1,8 +1,13 @@
+source 'https://github.com/MinterTeam/Minter_iOS_Specs'
+source 'https://github.com/Cocoapods/Specs'
+
 use_frameworks!
 
 
 target 'MinterExplorer_Example' do
+	
   pod 'MinterExplorer', :path => '../'
+	pod 'MinterCore', :path => '../../MinterCore'
 
   target 'MinterExplorer_Tests' do
     inherit! :search_paths
