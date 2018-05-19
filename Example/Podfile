@@ -1,5 +1,6 @@
 use_frameworks!
 
+
 target 'MinterExplorer_Example' do
   pod 'MinterExplorer', :path => '../'
 
