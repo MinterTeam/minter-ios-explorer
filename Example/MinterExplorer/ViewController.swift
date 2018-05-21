@@ -7,18 +7,33 @@
 //
 
 import UIKit
+import MinterCore
+import MinterExplorer
+
 
 class ViewController: UIViewController {
+	
+	var transactionManager: MinterExplorer.TransactionManager?
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		
+		let http = APIClient.shared
+		
+		transactionManager = MinterExplorer.TransactionManager(httpClient: http)
+		transactionManager?.transactions(address: "c07ec7cdcae90dea3999558f022aeb25dabbeea2", completion: { (transactions, error) in
+			print(transactions)
+			print(error)
+			
+			
+		})
+		
+		
+	}
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+	override func didReceiveMemoryWarning() {
+		super.didReceiveMemoryWarning()
+	}
 
 }
 
