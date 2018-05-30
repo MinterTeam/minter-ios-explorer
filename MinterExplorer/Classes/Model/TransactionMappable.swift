@@ -12,6 +12,8 @@ import ObjectMapper
 
 class TransactionMappable : Transaction, Mappable {
 	
+	let dateFormatter = DateFormatter(withFormat: "yyyy-MM-dd HH:mm:ss+zzzz", locale: Locale.current.identifier)
+	
 	//MARK: - Mappable
 	
 	required init?(map: Map) {
@@ -25,7 +27,7 @@ class TransactionMappable : Transaction, Mappable {
 		self.to <- map["data.to"]
 		self.coinSymbol <- map["data.coin"]
 		self.value <- map["data.amount"]
-		self.date <- (map["timestamp"], DateTransform())
+		self.date <- (map["timestamp"], DateFormatterTransform(dateFormatter: dateFormatter))
 	}
 
 }
