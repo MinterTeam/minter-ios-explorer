@@ -16,11 +16,11 @@ enum TransactionManagerError : Error {
 
 public class TransactionManager : BaseManager {
 	
-	public func transactions(address: String, completion: (([MinterCore.Transaction]?, Error?) -> ())?) {
+	public func transactions(addresses: [String], page: Int = 0, completion: (([MinterCore.Transaction]?, Error?) -> ())?) {
 		
-		let url = MinterExplorerAPIURL.transactions(address: address).url()
+		let url = MinterExplorerAPIURL.transactions.url()
 		
-		self.httpClient.getRequest(url, parameters: nil) { (response, error) in
+		self.httpClient.getRequest(url, parameters: ["addresses" : addresses, "page" : page]) { (response, error) in
 			
 			var res: [Transaction]?
 			var err: Error?
@@ -34,7 +34,7 @@ public class TransactionManager : BaseManager {
 				return
 			}
 			
-			guard let jsonArray = response.result as? [[String : Any]] else {
+			guard let jsonArray = response.data as? [[String : Any]] else {
 				res = []
 				return
 			}

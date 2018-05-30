@@ -7,14 +7,14 @@
 
 import Foundation
 
-
-let MinterExplorerAPIBaseURL = "https://explorer.beta.minter.network/api/v1/"
+public let MinterExplorerBaseURL = "https://testnet.explorer.minter.network"
+public let MinterExplorerAPIBaseURL = "https://testnet.explorer.minter.network/api/v1/"
 
 
 enum MinterExplorerAPIURL {
 	
 	case balance(address: String)
-	case transactions(address: String)
+	case transactions
 	
 	
 	func url() -> URL {
@@ -22,12 +22,9 @@ enum MinterExplorerAPIURL {
 		case .balance(let address):
 			return URL(string: MinterExplorerAPIBaseURL + "balance" + address)!
 			
-		case .transactions(let address):
+		case .transactions:
 			let url = URL(string: MinterExplorerAPIBaseURL + "transactions")!
-			var components = URLComponents(string: url.absoluteString)
-			components?.queryItems = [URLQueryItem(name: "account", value: address)]
-			return components!.url!
-			
+			return url
 		}
 	}
 }
