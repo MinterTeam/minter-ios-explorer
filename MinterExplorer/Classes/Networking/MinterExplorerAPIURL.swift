@@ -15,12 +15,17 @@ enum MinterExplorerAPIURL {
 	
 	case balance(address: String)
 	case transactions
+	case addresses
 	
 	
 	func url() -> URL {
 		switch self {
+			
+		case .addresses:
+			return URL(string: MinterExplorerAPIBaseURL + "address")!
+			
 		case .balance(let address):
-			return URL(string: MinterExplorerAPIBaseURL + "balance" + address)!
+			return URL(string: MinterExplorerAPIBaseURL + "balance/" + address)!
 			
 		case .transactions:
 			let url = URL(string: MinterExplorerAPIBaseURL + "transactions")!
