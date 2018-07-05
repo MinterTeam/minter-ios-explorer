@@ -21,11 +21,12 @@ class TransactionMappable : Transaction, Mappable {
 	}
 	
 	func mapping(map: Map) {
+		
 		self.hash <- map["hash"]
 		self.type <- map["type"]
-		self.from <- map["data.from"]
-		self.to <- map["data.to"]
-		self.coinSymbol <- map["data.coin"]
+		self.from <- (map["data.from"], AddressTransformer())
+		self.to <- (map["data.to"], AddressTransformer())
+		self.coinSymbol <- (map["data.coin"], CaseTransformer(case: .uppercase))
 		self.value <- map["data.amount"]
 		self.date <- (map["timestamp"], DateFormatterTransform(dateFormatter: dateFormatter))
 	}

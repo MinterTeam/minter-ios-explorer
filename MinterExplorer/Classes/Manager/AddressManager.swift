@@ -32,5 +32,32 @@ public class AddressManager : BaseManager {
 			
 		}
 	}
-
+	
+	public func balanceChannel(addresses: [String], completion: ((String?, String?, Int?, Error?) -> ())?){
+		
+		let url = MinterExplorerAPIURL.balanceChannel.url()
+		
+		self.httpClient.getRequest(url, parameters: ["addresses" : addresses]) { (response, error) in
+			
+			var channel: String?
+			var token: String?
+			var timestamp: Int?
+			var err: Error?
+			
+			defer {
+				completion?(channel, token, timestamp, err)
+			}
+			
+			guard nil == error, let resp = response.data as? [String : Any] else {
+				err = error
+				return
+			}
+			
+			channel = resp["channel"] as? String
+			token = resp["token"] as? String
+			timestamp = resp["timestamp"] as? Int
+			
+		}
+		
+	}
 }
