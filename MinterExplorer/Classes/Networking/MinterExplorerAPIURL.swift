@@ -26,7 +26,7 @@ enum MinterExplorerAPIURL {
 			return URL(string: MinterExplorerAPIBaseURL + "address")!
 			
 		case .balance(let address):
-			return URL(string: MinterExplorerAPIBaseURL + "balance/" + address)!
+			return URL(string: MinterExplorerAPIBaseURL + "balance/" + address.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!)!
 			
 		case .transactions:
 			let url = URL(string: MinterExplorerAPIBaseURL + "transactions")!
