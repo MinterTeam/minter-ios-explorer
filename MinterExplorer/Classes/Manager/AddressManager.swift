@@ -9,8 +9,17 @@ import Foundation
 import MinterCore
 
 
+/// Address Manager
 public class AddressManager : BaseManager {
 
+	/**
+	Method retreives addresses data from the Minter Explorer server
+	- SeeAlso: https://explorer.beta.minter.network/help/index.html
+	- Parameters:
+	- addresses: Addresses for which balance should be retreived
+	- completion: Method which will be called after request finished
+	- Precondition: each address in `addresses` should contain "Mx" prefix (e.g. Mx228e5a68b847d169da439ec15f727f08233a7ca6)
+	*/
 	public func addresses(addresses: [String], completion: (( [[String : Any]]?, Error?) -> ())?) {
 	
 		let url = MinterExplorerAPIURL.addresses.url()
@@ -33,6 +42,13 @@ public class AddressManager : BaseManager {
 		}
 	}
 	
+	/**
+	Method recieves balance "channel" which can be listened through Centrifugue web-socket
+	- Parameters:
+	- addresses: Addresses for which balance should be retreived
+	- completion: Method which will be called after request finished
+	- Precondition: each address in `addresses` should contain "Mx" prefix (e.g. Mx228e5a68b847d169da439ec15f727f08233a7ca6)
+	*/
 	public func balanceChannel(addresses: [String], completion: ((String?, String?, Int?, Error?) -> ())?){
 		
 		let url = MinterExplorerAPIURL.balanceChannel.url()

@@ -9,6 +9,7 @@ import Foundation
 
 public let MinterExplorerBaseURL = "https://testnet.explorer.minter.network"
 public let MinterExplorerAPIBaseURL = "https://testnet.explorer.minter.network/api/v1/"
+public let MinterExplorerWebSocketURL = "wss://rtm.explorer.minter.network/connection/websocket"
 
 
 enum MinterExplorerAPIURL {

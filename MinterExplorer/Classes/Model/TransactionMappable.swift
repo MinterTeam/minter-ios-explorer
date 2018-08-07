@@ -9,7 +9,7 @@ import Foundation
 import MinterCore
 import ObjectMapper
 
-
+/// Transaction Mapper
 class TransactionMappable : Transaction, Mappable {
 	
 	let dateFormatter = DateFormatter(withFormat: "yyyy-MM-dd HH:mm:ss+zzzz", locale: Locale.current.identifier)
@@ -19,16 +19,6 @@ class TransactionMappable : Transaction, Mappable {
 	required init?(map: Map) {
 		super.init()
 	}
-	
-//	func mapping(map: Map) {
-//
-//		self.hash <- map["hash"]
-//		self.type <- map["type"]
-////		self.from <- (map["data.from"], AddressTransformer())
-////		self.to <- (map["data.to"], AddressTransformer())
-////		self.coinSymbol <- (map["data.coin"], CaseTransformer(case: .uppercase))
-//		self.date <- (map["timestamp"], DateFormatterTransform(dateFormatter: dateFormatter))
-//	}
 	
 	func mapping(map: Map) {
 		self.hash <- map["hash"]

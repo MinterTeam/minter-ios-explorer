@@ -8,7 +8,7 @@
 import Foundation
 import ObjectMapper
 
-
+/// CaseTransformer class
 class CaseTransformer : TransformType {
 	
 	enum `case` {
