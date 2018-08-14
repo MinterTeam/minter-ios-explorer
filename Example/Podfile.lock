@@ -39,7 +39,7 @@ DEPENDENCIES:
   - Quick (~> 1.2.0)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - Alamofire
     - BigInt
     - CKMnemonic
@@ -75,4 +75,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: ce91b70a23dace74e91f8a3d31f142e02101aa33
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.3

@@ -6,13 +6,36 @@
 //
 
 import Foundation
-import MinterCore
 import ObjectMapper
+import BigInt
+
+
+
+/// Transaction Model
+open class Transaction {
+	
+	/// Transaction type
+	public enum TransactionType: String {
+		case send = "send"
+		case buy = "buyCoin"
+		case sell = "sellCoin"
+		case sellAllCoins = "sellAllCoin"
+	}
+	
+	public init() {}
+	
+	public var hash: String?
+	public var type: TransactionType?
+	public var txn: Int?
+	public var data: TransactionData?
+	public var date: Date?
+}
+
 
 /// Transaction Mapper
 class TransactionMappable : Transaction, Mappable {
 	
-	let dateFormatter = DateFormatter(withFormat: "yyyy-MM-dd HH:mm:ss+zzzz", locale: Locale.current.identifier)
+	private static let dateFormatter = DateFormatter(withFormat: "yyyy-MM-dd HH:mm:ss+zzzz", locale: Locale.current.identifier)
 	
 	//MARK: - Mappable
 	
@@ -40,7 +63,7 @@ class TransactionMappable : Transaction, Mappable {
 				break
 			}
 		}
-		self.date <- (map["timestamp"], DateFormatterTransform(dateFormatter: dateFormatter))
+		self.date <- (map["timestamp"], DateFormatterTransform(dateFormatter: TransactionMappable.dateFormatter))
 	}
 
 }

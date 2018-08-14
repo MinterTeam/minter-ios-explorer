@@ -18,7 +18,7 @@ public class TransactionManager : BaseManager {
 	
 	/**
 	Method recieves transaction list from the Minter Explorer server
-	- SeeAlso: https://explorer.beta.minter.network/help/index.html
+	- SeeAlso: https://testnet.explorer.minter.network/help/index.html
 	- Parameters:
 	- addresses: Addresses for which balance should be retreived
 	- page: used for paging
@@ -26,13 +26,13 @@ public class TransactionManager : BaseManager {
 	- Precondition: each address in `addresses` should contain "Mx" prefix (e.g. Mx228e5a68b847d169da439ec15f727f08233a7ca6)
 	- Precondition: The result list can't contain more than 50 items
 	*/
-	public func transactions(addresses: [String], page: Int = 0, completion: (([MinterCore.Transaction]?, Error?) -> ())?) {
+	public func transactions(addresses: [String], page: Int = 0, completion: (([MinterExplorer.Transaction]?, Error?) -> ())?) {
 		
 		let url = MinterExplorerAPIURL.transactions.url()
 		
 		self.httpClient.getRequest(url, parameters: ["addresses" : addresses, "page" : page]) { (response, error) in
 			
-			var res: [Transaction]?
+			var res: [MinterExplorer.Transaction]?
 			var err: Error?
 			
 			defer {
@@ -49,10 +49,36 @@ public class TransactionManager : BaseManager {
 				return
 			}
 			
-			res = Mapper<TransactionMappable>().mapArray(JSONArray: jsonArray)
+			res = Mapper<MinterExplorer.TransactionMappable>().mapArray(JSONArray: jsonArray)
 			
 		}
 	}
 	
-}
+	public func transaction(hash: String, completion: ((MinterExplorer.Transaction?, Error?) -> ())?) {
+		
+		let url = MinterExplorerAPIURL.transaction(hash: hash).url()
+		
+		self.httpClient.getRequest(url, parameters: nil) { (response, err) in
+			
+			var transaction: MinterExplorer.Transaction?
+			var error: Error?
+			
+			defer {
+				completion?(transaction, error)
+			}
+			
+			guard nil == err else {
+				error = err
+				return
+			}
+			
+			guard let jsonArray = response.data as? [String : Any] else {
+				return
+			}
+			
+			transaction = Mapper<MinterExplorer.TransactionMappable>().map(JSON: jsonArray)
+			
+		}
+	}
 
+}

@@ -16,6 +16,7 @@ enum MinterExplorerAPIURL {
 	
 	case balance(address: String)
 	case transactions
+	case transaction(hash: String)
 	case addresses
 	case balanceChannel
 	
@@ -29,9 +30,11 @@ enum MinterExplorerAPIURL {
 		case .balance(let address):
 			return URL(string: MinterExplorerAPIBaseURL + "balance/" + address.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!)!
 			
+		case .transaction(let hash):
+			return URL(string: MinterExplorerAPIBaseURL + "transaction/" + hash.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!)!
+			
 		case .transactions:
-			let url = URL(string: MinterExplorerAPIBaseURL + "transactions")!
-			return url
+			return URL(string: MinterExplorerAPIBaseURL + "transactions")!
 			
 		case .balanceChannel:
 			return URL(string: MinterExplorerAPIBaseURL + "address/get-balance-channel")!
