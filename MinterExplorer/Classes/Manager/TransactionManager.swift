@@ -54,6 +54,12 @@ public class TransactionManager : BaseManager {
 		}
 	}
 	
+	
+	/// Method recieves transaction from the Minter Explorer
+	///
+	/// - Parameters:
+	///   - hash: Transaction hash with "Mt" prefix
+	///   - completion: method which will be called after request finished
 	public func transaction(hash: String, completion: ((MinterExplorer.Transaction?, Error?) -> ())?) {
 		
 		let url = MinterExplorerAPIURL.transaction(hash: hash).url()

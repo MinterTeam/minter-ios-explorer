@@ -18,6 +18,10 @@ class ViewController: UIViewController {
 	
 	private var addressesManager: MinterExplorer.AddressManager?
 	
+	private var infoManager: MinterExplorer.InfoManager?
+	
+	private var blockManager: MinterExplorer.BlockManager?
+	
 	/// HTTP Client
 	private let http = APIClient.shared
 
@@ -32,6 +36,13 @@ class ViewController: UIViewController {
 			print("Transactions:")
 			print(transactions ?? [])
 			print("Error: \(String(describing: error))")
+		})
+		
+		transactionManager?.transaction(hash: "Mtecc04e7ca110a69b46af6fb0afc8c89ea459e6a1", completion: { (transaction, error) in
+			
+			print(transaction)
+			print(error)
+			
 		})
 		
 		/// Addresses
@@ -50,6 +61,34 @@ class ViewController: UIViewController {
 			print("Error: \(String(describing: error))")
 		})
 		
+		
+		infoManager = InfoManager(httpClient: http)
+		infoManager?.status(with: { (status, error) in
+			print(status ?? "")
+			print(error ?? "")
+		})
+		
+		infoManager?.statusPage(with: { (statusPage, error) in
+			print(statusPage ?? "")
+			print(error ?? "")
+		})
+		
+		infoManager?.txCountChartData(with: { (data, error) in
+			print(data ?? "")
+			print(error ?? "")
+		})
+		
+		
+		blockManager = BlockManager(httpClient: http)
+		blockManager?.block(height: 1, completion: { (block, error) in
+			print(block ?? "")
+			print(error ?? "")
+		})
+		
+		blockManager?.blocks(page: 1, completion: { (blocks, error) in
+			print(blocks ?? "")
+			print(error ?? "")
+		})
 		
 	}
 
