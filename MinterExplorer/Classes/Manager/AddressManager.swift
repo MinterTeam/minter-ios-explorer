@@ -12,7 +12,6 @@ import MinterCore
 /// Address Manager
 public class AddressManager : BaseManager {
 	
-	
 	/// Method retreived info about address
 	///
 	/// - SeeAlso: https://testnet.explorer.minter.network/help/index.html
