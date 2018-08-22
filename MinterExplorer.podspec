@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'MinterExplorer'
-  s.version          = '0.1.1'
+  s.version          = '0.1.2'
   s.summary          = 'A short description of MinterExplorer.'
   s.description      = <<-DESC
 TODO: Add long description of the pod here.

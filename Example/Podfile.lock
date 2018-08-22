@@ -2,22 +2,19 @@ PODS:
   - Alamofire (4.7.2)
   - BigInt (3.0.1):
     - SipHash (~> 1.2)
-  - CKMnemonic (0.1.7):
-    - CryptoSwift
   - CryptoSwift (0.9.0)
   - FBSnapshotTestCase (2.1.4):
     - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
   - FBSnapshotTestCase/Core (2.1.4)
   - FBSnapshotTestCase/SwiftSupport (2.1.4):
     - FBSnapshotTestCase/Core
-  - MinterCore (0.1.1):
+  - MinterCore (0.1.4):
     - Alamofire (~> 4.6)
-    - BigInt
-    - CKMnemonic
-    - CryptoSwift
+    - BigInt (~> 3.0)
+    - CryptoSwift (~> 0.9)
     - ObjectMapper (~> 3.1)
-    - secp256k1.swift
-  - MinterExplorer (0.1.0):
+    - secp256k1.swift (~> 0.1)
+  - MinterExplorer (0.1.1):
     - MinterCore
   - Nimble (7.0.3)
   - Nimble-Snapshots (6.3.0):
@@ -42,7 +39,6 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - BigInt
-    - CKMnemonic
     - CryptoSwift
     - FBSnapshotTestCase
     - Nimble
@@ -61,11 +57,10 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
   BigInt: 8e8a52161c745cd3ab78e3dc346a9fbee51e6cf6
-  CKMnemonic: 88e745afffea6f3c719c799d9869a2ea5eb9f08b
   CryptoSwift: bca8c5b653dcc2d9734409242a070ff53bafac86
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
-  MinterCore: 696e84a3e27a51dfed47564143789f8706139a6c
-  MinterExplorer: d5784ab4fb1636fde9e3bae29c81525b2092307f
+  MinterCore: 0659b2bcd811f9a2666cd6a2f16116d65203b09d
+  MinterExplorer: 402f5d42cfa898e698402d6c8f8a41eef3dd5c78
   Nimble: 7f5a9c447a33002645a071bddafbfb24ea70e0ac
   Nimble-Snapshots: f5459b5b091678dc942d03ec4741cacb58ba4a52
   ObjectMapper: 20505058f54e5c3ca69e1d6de9897d152a5369a6
