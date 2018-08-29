@@ -44,6 +44,8 @@ public class ConvertTransactionData : TransactionData {
 	public var fromCoin: String?
 	public var toCoin: String?
 	public var value: Decimal?
+	public var valueToBuy: Decimal?
+	public var valueToSell: Decimal?
 }
 
 public class ConvertTransactionDataMappable : ConvertTransactionData, Mappable {
@@ -58,9 +60,19 @@ public class ConvertTransactionDataMappable : ConvertTransactionData, Mappable {
 		fromCoin <- map["coin_to_sell"]
 		toCoin <- map["coin_to_buy"]
 		value <- map["value"]
+		valueToBuy <- map["value_to_buy"]
+		valueToSell <- map["value_to_sell"]
 		//TODO: to transformer
 		if let valueStr = map.JSON["value"] as? String {
 			value = Decimal(string: valueStr)
+		}
+		
+		if let valueStr = map.JSON["value_to_buy"] as? String {
+			valueToBuy = Decimal(string: valueStr)
+		}
+		
+		if let valueStr = map.JSON["value_to_sell"] as? String {
+			valueToSell = Decimal(string: valueStr)
 		}
 		
 		from <- (map["from"], AddressTransformer())
@@ -71,6 +83,7 @@ public class ConvertTransactionDataMappable : ConvertTransactionData, Mappable {
 public class SellAllCoinsTransactionData : TransactionData {
 	public var fromCoin: String?
 	public var toCoin: String?
+	public var value: Decimal?
 }
 
 public class SellAllCoinsTransactionDataMappable : SellAllCoinsTransactionData, Mappable {
@@ -86,5 +99,7 @@ public class SellAllCoinsTransactionDataMappable : SellAllCoinsTransactionData, 
 		from <- (map["from"], AddressTransformer())
 		fromCoin <- map["coin_to_sell"]
 		toCoin <- map["coin_to_buy"]
+		value <- map["value_to_sell"]
+		
 	}
 }

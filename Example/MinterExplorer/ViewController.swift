@@ -28,7 +28,7 @@ class ViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		let addresses = ["Mxc07ec7cdcae90dea3999558f022aeb25dabbeea2"]
+		let addresses = ["Mx228e5a68b847d169da439ec15f727f08233a7ca6"]
 		
 		/// Tranasctions
 		transactionManager = MinterExplorer.TransactionManager(httpClient: http)
