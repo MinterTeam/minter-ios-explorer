@@ -99,9 +99,9 @@ public class SellAllCoinsTransactionDataMappable : SellAllCoinsTransactionData, 
 		from <- (map["from"], AddressTransformer())
 		fromCoin <- map["coin_to_sell"]
 		toCoin <- map["coin_to_buy"]
-		value <- map["value_to_sell"]
+		value <- map["value_to_buy"]
 		
-		if let valueStr = map.JSON["value_to_sell"] as? String {
+		if let valueStr = map.JSON["value_to_buy"] as? String {
 			value = Decimal(string: valueStr)
 		}
 	}
