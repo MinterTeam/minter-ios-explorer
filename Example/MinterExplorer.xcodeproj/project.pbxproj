@@ -30,7 +30,7 @@
 /* Begin PBXFileReference section */
 		1E92042C5F5ECEF72FBDACD3 /* Pods_MinterExplorer_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MinterExplorer_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		22AF00A3820C37AA978A3C5E /* Pods-MinterExplorer_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MinterExplorer_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MinterExplorer_Example/Pods-MinterExplorer_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		309C7917B8EAD8FDAD6902BB /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		309C7917B8EAD8FDAD6902BB /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* MinterExplorer_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MinterExplorer_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -42,8 +42,8 @@
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		8BD9C1B8CD9A0797B0E5EC15 /* Pods-MinterExplorer_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MinterExplorer_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-MinterExplorer_Example/Pods-MinterExplorer_Example.release.xcconfig"; sourceTree = "<group>"; };
-		B9946D3306619714BBC7141A /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		CF2BEC740CA0542B3739ED36 /* MinterExplorer.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = MinterExplorer.podspec; path = ../MinterExplorer.podspec; sourceTree = "<group>"; };
+		B9946D3306619714BBC7141A /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		CF2BEC740CA0542B3739ED36 /* MinterExplorer.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = MinterExplorer.podspec; path = ../MinterExplorer.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		E575790EB1097AB57EC0D04B /* Pods-MinterExplorer_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MinterExplorer_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MinterExplorer_Tests/Pods-MinterExplorer_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		E6043D963204B5FCFE659947 /* Pods_MinterExplorer_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MinterExplorer_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E75BFA9ABA258C023CE990B6 /* Pods-MinterExplorer_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MinterExplorer_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MinterExplorer_Tests/Pods-MinterExplorer_Tests.debug.xcconfig"; sourceTree = "<group>"; };
