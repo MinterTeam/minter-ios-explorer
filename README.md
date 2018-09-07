@@ -41,7 +41,6 @@ transactionManager?.transactions(addresses: addresses, completion: { (transactio
 transactionManager?.transaction(hash: "Mtecc04e7ca110a69b46af6fb0afc8c89ea459e6a1", completion: { (transaction, error) in
   print(transaction)
   print(error)
-
 })
 ```
 
@@ -55,7 +54,6 @@ addressesManager?.addresses(addresses: addresses, completion: { (addresses, erro
   print(addresses)
   print(error)
 })
-
 /// Web-socket channel to get live balance changes
 addressesManager?.balanceChannel(addresses: addresses, completion: { (chanel, token, timestamp, error) in
   print(chanel)
