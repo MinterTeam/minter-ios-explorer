@@ -3,8 +3,8 @@ use_frameworks!
 
 
 target 'MinterExplorer_Example' do
-	pod 'MinterCore'
-  pod 'MinterExplorer'
+	pod 'MinterCore', :path => '../../MinterCore'
+	pod 'MinterExplorer', :path => '../'
 	
 
   target 'MinterExplorer_Tests' do

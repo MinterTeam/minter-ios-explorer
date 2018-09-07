@@ -14,9 +14,13 @@ public let MinterExplorerWebSocketURL = "wss://rtm.explorer.minter.network/conne
 
 enum MinterExplorerAPIURL {
 	
+	case coins
+	
 	case balance(address: String)
+	
 	case transactions
 	case transaction(hash: String)
+	
 	case address(address: String)
 	case addresses
 	case balanceChannel
@@ -31,6 +35,9 @@ enum MinterExplorerAPIURL {
 	
 	func url() -> URL {
 		switch self {
+			
+		case .coins:
+			return URL(string: MinterExplorerAPIBaseURL + "coins")!
 
 		case .address(let address):
 			return URL(string: MinterExplorerAPIBaseURL + "address/" + address.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!)!
