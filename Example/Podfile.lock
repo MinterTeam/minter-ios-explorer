@@ -1,20 +1,20 @@
 PODS:
-  - Alamofire (4.7.2)
-  - BigInt (3.0.1):
+  - Alamofire (4.7.3)
+  - BigInt (3.1.0):
     - SipHash (~> 1.2)
-  - CryptoSwift (0.9.0)
+  - CryptoSwift (0.11.0)
   - FBSnapshotTestCase (2.1.4):
     - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
   - FBSnapshotTestCase/Core (2.1.4)
   - FBSnapshotTestCase/SwiftSupport (2.1.4):
     - FBSnapshotTestCase/Core
-  - MinterCore (0.1.4):
+  - MinterCore (0.1.6):
     - Alamofire (~> 4.6)
     - BigInt (~> 3.0)
     - CryptoSwift (~> 0.9)
     - ObjectMapper (~> 3.1)
     - secp256k1.swift (~> 0.1)
-  - MinterExplorer (0.1.1):
+  - MinterExplorer (0.1.6):
     - MinterCore
   - Nimble (7.0.3)
   - Nimble-Snapshots (6.3.0):
@@ -22,15 +22,15 @@ PODS:
   - Nimble-Snapshots/Core (6.3.0):
     - FBSnapshotTestCase (~> 2.0)
     - Nimble (~> 7.0)
-  - ObjectMapper (3.1.0)
+  - ObjectMapper (3.3.0)
   - Quick (1.2.0)
   - secp256k1.swift (0.1.4)
-  - SipHash (1.2.0)
+  - SipHash (1.2.2)
 
 DEPENDENCIES:
   - FBSnapshotTestCase (~> 2.1.4)
-  - MinterCore (from `../../MinterCore`)
-  - MinterExplorer (from `../`)
+  - MinterCore
+  - MinterExplorer
   - Nimble (~> 7.0.2)
   - Nimble-Snapshots (~> 6.3.0)
   - Quick (~> 1.2.0)
@@ -41,6 +41,8 @@ SPEC REPOS:
     - BigInt
     - CryptoSwift
     - FBSnapshotTestCase
+    - MinterCore
+    - MinterExplorer
     - Nimble
     - Nimble-Snapshots
     - ObjectMapper
@@ -48,26 +50,20 @@ SPEC REPOS:
     - secp256k1.swift
     - SipHash
 
-EXTERNAL SOURCES:
-  MinterCore:
-    :path: "../../MinterCore"
-  MinterExplorer:
-    :path: "../"
-
 SPEC CHECKSUMS:
-  Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
-  BigInt: 8e8a52161c745cd3ab78e3dc346a9fbee51e6cf6
-  CryptoSwift: bca8c5b653dcc2d9734409242a070ff53bafac86
+  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  BigInt: 76b5dfdfa3e2e478d4ffdf161aeede5502e2742f
+  CryptoSwift: ad5208dd2aae0a764ea4ce2c2d34bd067cae67f0
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
-  MinterCore: 0659b2bcd811f9a2666cd6a2f16116d65203b09d
-  MinterExplorer: 402f5d42cfa898e698402d6c8f8a41eef3dd5c78
+  MinterCore: b52006fc8aa616180b08201688cfab28d3714219
+  MinterExplorer: f02984ade144fabb688c57acd3455c41c46b475e
   Nimble: 7f5a9c447a33002645a071bddafbfb24ea70e0ac
   Nimble-Snapshots: f5459b5b091678dc942d03ec4741cacb58ba4a52
-  ObjectMapper: 20505058f54e5c3ca69e1d6de9897d152a5369a6
+  ObjectMapper: b612bf8c8e99c4dc0bb6013a51f7c27966ed5da9
   Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
   secp256k1.swift: a7e7a214f6db6ce5db32cc6b2b45e5c4dd633634
-  SipHash: c6e9e43e9c531b5bc6602545130c26194a6d31ce
+  SipHash: fad90a4683e420c52ef28063063dbbce248ea6d4
 
-PODFILE CHECKSUM: ce91b70a23dace74e91f8a3d31f142e02101aa33
+PODFILE CHECKSUM: 79f35a9504162dab6599784739672fecd39bdb53
 
 COCOAPODS: 1.5.3
