@@ -1,3 +1,14 @@
+<p align="center" background="black"><img src="minter-logo.svg" width="400"></p>
+<p align="center">
+<a href="https://github.com/MinterTeam/minter-ios-explorer/releases/latest"><img src="https://img.shields.io/github/tag/MinterTeam/minter-ios-explorer.svg" alt="Version"></a>
+<a href="https://travis-ci.org/MinterTeam/minter-ios-explorer"><img src="http://img.shields.io/travis/MinterTeam/minter-ios-explorer.svg?style=flat" alt="CI Status"></a> 
+<a href="http://cocoapods.org/pods/MinterExplorer"><img src="https://img.shields.io/cocoapods/v/MinterExplorer.svg?style=flat" alt="Version"></a>
+<a href="http://cocoapods.org/pods/MinterExplorer"><img src="https://img.shields.io/cocoapods/p/MinterExplorer.svg?style=flat" alt="Platform"></a>
+<a href="https://github.com/MinterTeam/minter-ios-explorer/blob/master/LICENSE"><img src="https://img.shields.io/github/license/MinterTeam/minter-ios-explorer.svg" alt="License"></a>
+<a href="https://github.com/MinterTeam/minter-ios-explorer/commits/master"><img src="https://img.shields.io/github/last-commit/MinterTeam/minter-ios-explorer.svg" alt="Last commit"></a>
+</p>
+
+
 # MinterExplorer
 
 [![CI Status](https://img.shields.io/travis/MinterTeam/minter-ios-explorer.svg?style=flat)](https://travis-ci.org/MinterTeam/minter-ios-explorer)
