@@ -11,11 +11,6 @@
 
 # MinterExplorer
 
-[![CI Status](https://img.shields.io/travis/MinterTeam/minter-ios-explorer.svg?style=flat)](https://travis-ci.org/MinterTeam/minter-ios-explorer)
-[![Version](https://img.shields.io/cocoapods/v/MinterExplorer.svg?style=flat)](https://cocoapods.org/pods/MinterExplorer)
-[![License](https://img.shields.io/cocoapods/l/MinterExplorer.svg?style=flat)](https://cocoapods.org/pods/MinterExplorer)
-[![Platform](https://img.shields.io/cocoapods/p/MinterExplorer.svg?style=flat)](https://cocoapods.org/pods/MinterExplorer)
-
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
