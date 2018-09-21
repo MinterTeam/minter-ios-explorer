@@ -106,3 +106,31 @@ public class SellAllCoinsTransactionDataMappable : SellAllCoinsTransactionData, 
 		}
 	}
 }
+
+
+public class DelegateTransactionData : TransactionData {
+	public var pubKey: String?
+	public var coin: String?
+	public var stake: Decimal?
+}
+
+public class DelegateTransactionDataMappable : DelegateTransactionData, Mappable {
+	
+	required public init?(map: Map) {
+		super.init()
+		
+		mapping(map: map)
+	}
+	
+	public func mapping(map: Map) {
+		
+		pubKey <- map["pub_key"]
+		coin <- map["coin"]
+		stake <- map["stake"]
+		from <- (map["from"], MinterCore.AddressTransformer())
+		//TODO: to transformer
+		if let valueStr = map.JSON["stake"] as? String {
+			stake = Decimal(string: valueStr)
+		}
+	}
+}

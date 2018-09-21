@@ -20,6 +20,8 @@ open class Transaction {
 		case buy = "buyCoin"
 		case sell = "sellCoin"
 		case sellAllCoins = "sellAllCoin"
+		case delegate = "delegate"
+		case unbond = "unbond"
 	}
 	
 	public init() {}
@@ -29,6 +31,7 @@ open class Transaction {
 	public var txn: Int?
 	public var data: TransactionData?
 	public var date: Date?
+	public var from: String?
 }
 
 
@@ -47,6 +50,7 @@ class TransactionMappable : Transaction, Mappable {
 		self.hash <- map["hash"]
 		self.type <- map["type"]
 		self.txn <- map["txn"]
+		self.from <- map["from"]
 		
 		if nil != type, let data = map.JSON["data"] as? [String : Any] {
 			switch type! {
@@ -60,6 +64,14 @@ class TransactionMappable : Transaction, Mappable {
 				
 			case .sellAllCoins:
 				self.data = Mapper<SellAllCoinsTransactionDataMappable>().map(JSON: data)
+				break
+				
+			case .delegate:
+				self.data = Mapper<DelegateTransactionDataMappable>().map(JSON: data)
+				break
+				
+			case .unbond:
+				self.data = Mapper<DelegateTransactionDataMappable>().map(JSON: data)
 				break
 			}
 		}

@@ -9,7 +9,7 @@ import Foundation
 import MinterCore
 import ObjectMapper
 
-public class CoinManager : BaseManager {
+public class ExplorerCoinManager : BaseManager {
 	
 	public func coins(term: String? = nil, completion: (([Coin]?, Error?) -> ())?) {
 		
