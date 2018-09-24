@@ -22,7 +22,7 @@ class ViewController: UIViewController {
 	
 	private var blockManager: MinterExplorer.BlockManager?
 	
-	private var coinManager: MinterExplorer.CoinManager?
+	private var coinManager: MinterExplorer.ExplorerCoinManager?
 	
 	/// HTTP Client
 	private let http = APIClient.shared
