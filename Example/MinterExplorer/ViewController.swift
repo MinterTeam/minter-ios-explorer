@@ -30,13 +30,11 @@ class ViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		coinManager = MinterExplorer.CoinManager(httpClient: http)
-		coinManager?.coins(term: "MN") { coin, error in
+		coinManager = MinterExplorer.ExplorerCoinManager(httpClient: http)
+		coinManager?.coins(term: "MNT") { coin, error in
 			print(coin)
 			print(error)
 		}
-		
-		
 		
 		let addresses = ["Mx228e5a68b847d169da439ec15f727f08233a7ca6"]
 		
