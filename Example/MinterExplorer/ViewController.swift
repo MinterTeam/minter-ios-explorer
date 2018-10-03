@@ -30,7 +30,7 @@ class ViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		coinManager = MinterExplorer.CoinManager(httpClient: http)
+		coinManager = MinterExplorer.ExplorerCoinManager(httpClient: http)
 		coinManager?.coins(term: "MNT") { coin, error in
 			print(coin)
 			print(error)
@@ -39,7 +39,7 @@ class ViewController: UIViewController {
 		let addresses = ["Mx228e5a68b847d169da439ec15f727f08233a7ca6"]
 		
 		/// Tranasctions
-		transactionManager = MinterExplorer.TransactionManager(httpClient: http)
+		transactionManager = MinterExplorer.ExplorerTransactionManager(httpClient: http)
 		transactionManager?.transactions(addresses: addresses, completion: { (transactions, error) in
 			print("Transactions:")
 			print(transactions ?? [])
@@ -85,7 +85,7 @@ class ViewController: UIViewController {
 		})
 		
 		/// Addresses
-		addressesManager = AddressManager(httpClient: http)
+		addressesManager = ExplorerAddressManager(httpClient: http)
 		addressesManager?.addresses(addresses: addresses, completion: { (addresses, error) in
 			print("Addresses:")
 			print(addresses ?? [])
@@ -118,7 +118,7 @@ class ViewController: UIViewController {
 		})
 		
 		
-		blockManager = BlockManager(httpClient: http)
+		blockManager = ExplorerBlockManager(httpClient: http)
 		blockManager?.block(height: 1, completion: { (block, error) in
 			print(block ?? "")
 			print(error ?? "")
