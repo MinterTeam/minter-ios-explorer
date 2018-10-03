@@ -101,7 +101,7 @@ class ViewController: UIViewController {
 		})
 		
 		
-		infoManager = InfoManager(httpClient: http)
+		infoManager = ExplorerInfoManager(httpClient: http)
 		infoManager?.status(with: { (status, error) in
 			print(status ?? "")
 			print(error ?? "")
