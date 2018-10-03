@@ -14,7 +14,7 @@ enum TransactionManagerError : Error {
 }
 
 
-public class TransactionManager : BaseManager {
+public class ExplorerTransactionManager : BaseManager {
 	
 	/**
 	Method recieves transaction list from the Minter Explorer server
@@ -199,11 +199,11 @@ public class TransactionManager : BaseManager {
 		}
 	}
 	
-	public func estimateTx(tx: String, completion: ((Decimal?, Error?) -> ())?) {
+	public func estimateCommission(for rawTx: String, completion: ((Decimal?, Error?) -> ())?) {
 		
 		let url = MinterExplorerAPIURL.transactionCommission.url()
 		
-		self.httpClient.getRequest(url, parameters: ["transaction" : tx]) { (response, error) in
+		self.httpClient.getRequest(url, parameters: ["transaction" : rawTx]) { (response, error) in
 			
 			var com: Decimal?
 			var err: Error?

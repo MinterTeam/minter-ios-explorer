@@ -10,7 +10,7 @@ import MinterCore
 
 
 /// Address Manager
-public class AddressManager : BaseManager {
+public class ExplorerAddressManager : BaseManager {
 	
 	/// Method retreived info about address
 	///

@@ -9,7 +9,7 @@ import Foundation
 import MinterCore
 
 
-public class BlockManager : BaseManager {
+public class ExplorerBlockManager : BaseManager {
 	
 	
 	/// Method retreives block from the Minter Explorer

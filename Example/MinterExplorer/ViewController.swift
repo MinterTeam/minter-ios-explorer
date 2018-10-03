@@ -14,7 +14,7 @@ import MinterExplorer
 class ViewController: UIViewController {
 	
 	
-	private var transactionManager: MinterExplorer.TransactionManager?
+	private var transactionManager: MinterExplorer.ExplorerTransactionManager?
 	
 	private var addressesManager: MinterExplorer.AddressManager?
 	
@@ -22,7 +22,7 @@ class ViewController: UIViewController {
 	
 	private var blockManager: MinterExplorer.BlockManager?
 	
-	private var coinManager: MinterExplorer.ExplorerCoinManager?
+	private var coinManager: MinterExplorer.CoinManager?
 	
 	/// HTTP Client
 	private let http = APIClient.shared
@@ -30,7 +30,7 @@ class ViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		coinManager = MinterExplorer.ExplorerCoinManager(httpClient: http)
+		coinManager = MinterExplorer.CoinManager(httpClient: http)
 		coinManager?.coins(term: "MNT") { coin, error in
 			print(coin)
 			print(error)
@@ -64,7 +64,7 @@ class ViewController: UIViewController {
 			print(err)
 		})
 		
-		transactionManager?.estimateTx(tx: "f880820d62018a4d4e540000000000000001aae98a4d4e540000000000000094228e5a68b847d169da439ec15f727f08233a7ca6880de0b6b3a764000080801ba0680eff10955f6a0cdbd2ded0494f74dc922b518d2ecc162325d589b20b2ab1f7a00cb1fb02eecb3f2e4ba1f676c34f6ce6b5c94eada2192f5fec45a19b0e8f0601", completion: { (commission, error) in
+		transactionManager?.estimateCommission(for: "f880820d62018a4d4e540000000000000001aae98a4d4e540000000000000094228e5a68b847d169da439ec15f727f08233a7ca6880de0b6b3a764000080801ba0680eff10955f6a0cdbd2ded0494f74dc922b518d2ecc162325d589b20b2ab1f7a00cb1fb02eecb3f2e4ba1f676c34f6ce6b5c94eada2192f5fec45a19b0e8f0601", completion: { (commission, error) in
 			
 			print(commission)
 			print(error)
