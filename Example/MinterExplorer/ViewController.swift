@@ -16,13 +16,13 @@ class ViewController: UIViewController {
 	
 	private var transactionManager: MinterExplorer.ExplorerTransactionManager?
 	
-	private var addressesManager: MinterExplorer.AddressManager?
+	private var addressesManager: MinterExplorer.ExplorerAddressManager?
 	
-	private var infoManager: MinterExplorer.InfoManager?
+	private var infoManager: MinterExplorer.ExplorerInfoManager?
 	
-	private var blockManager: MinterExplorer.BlockManager?
+	private var blockManager: MinterExplorer.ExplorerBlockManager?
 	
-	private var coinManager: MinterExplorer.CoinManager?
+	private var coinManager: MinterExplorer.ExplorerCoinManager?
 	
 	/// HTTP Client
 	private let http = APIClient.shared
