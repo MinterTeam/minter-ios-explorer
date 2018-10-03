@@ -46,6 +46,37 @@ class ViewController: UIViewController {
 			print("Error: \(String(describing: error))")
 		})
 		
+		
+		transactionManager?.count(for: "Mx228e5a68b847d169da439ec15f727f08233a7ca6", completion: { (val, err) in
+			print(val)
+			
+		})
+		
+		transactionManager?.estimateCoinBuy(coinFrom: "MNT", coinTo: "SHSCOIN", value: 1000, completion: { (get, comm, err) in
+			print(get)
+			print(comm)
+			print(err)
+		})
+		
+		transactionManager?.estimateCoinSell(coinFrom: "MNT", coinTo: "SHSCOIN", value: 1000, completion: { (get, comm, err) in
+			print(get)
+			print(comm)
+			print(err)
+		})
+		
+		transactionManager?.estimateTx(tx: "f880820d62018a4d4e540000000000000001aae98a4d4e540000000000000094228e5a68b847d169da439ec15f727f08233a7ca6880de0b6b3a764000080801ba0680eff10955f6a0cdbd2ded0494f74dc922b518d2ecc162325d589b20b2ab1f7a00cb1fb02eecb3f2e4ba1f676c34f6ce6b5c94eada2192f5fec45a19b0e8f0601", completion: { (commission, error) in
+			
+			print(commission)
+			print(error)
+			
+		})
+		
+		transactionManager?.sendRawTransaction(rawTransaction: "f880820d62018a4d4e540000000000000001aae98a4d4e540000000000000094228e5a68b847d169da439ec15f727f08233a7ca6880de0b6b3a764000080801ba0680eff10955f6a0cdbd2ded0494f74dc922b518d2ecc162325d589b20b2ab1f7a00cb1fb02eecb3f2e4ba1f676c34f6ce6b5c94eada2192f5fec45a19b0e8f0601", completion: { (res, err) in
+			
+			print(res)
+			print(err)
+		})
+		
 		transactionManager?.transaction(hash: "Mtecc04e7ca110a69b46af6fb0afc8c89ea459e6a1", completion: { (transaction, error) in
 			
 			print(transaction)

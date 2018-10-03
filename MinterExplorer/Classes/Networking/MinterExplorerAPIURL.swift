@@ -20,6 +20,12 @@ enum MinterExplorerAPIURL {
 	
 	case transactions
 	case transaction(hash: String)
+	case send
+	case transactionsCount(address: String)
+	
+	case estimateCoinSell
+	case estimateCoinBuy
+	case transactionCommission
 	
 	case address(address: String)
 	case addresses
@@ -53,6 +59,13 @@ enum MinterExplorerAPIURL {
 
 		case .transactions:
 			return URL(string: MinterExplorerAPIBaseURL + "transactions/")!
+			
+		case .send:
+			return URL(string: MinterExplorerAPIBaseURL + "transaction/push/")!
+			
+		case .transactionsCount(let address):
+			let ads = address.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!
+			return URL(string: MinterExplorerAPIBaseURL + "transaction/get-count/" + ads)!
 
 		case .balanceChannel:
 			return URL(string: MinterExplorerAPIBaseURL + "address/get-balance-channel")!
@@ -71,6 +84,15 @@ enum MinterExplorerAPIURL {
 			
 		case .txCountChartData:
 			return URL(string: MinterExplorerAPIBaseURL + "tx-count-chart-data/")!
+			
+		case .estimateCoinBuy:
+			return URL(string: MinterExplorerAPIBaseURL + "estimate/coin-buy")!
+			
+		case .estimateCoinSell:
+			return URL(string: MinterExplorerAPIBaseURL + "estimate/coin-sell")!
+			
+		case .transactionCommission:
+			return URL(string: MinterExplorerAPIBaseURL + "estimate/tx-commission")!
 			
 		}
 	}

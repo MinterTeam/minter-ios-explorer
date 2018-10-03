@@ -10,7 +10,7 @@ import MinterCore
 import ObjectMapper
 
 enum TransactionManagerError : Error {
-	
+	case canNotParseResponse
 }
 
 
@@ -86,5 +86,144 @@ public class TransactionManager : BaseManager {
 			
 		}
 	}
-
+	
+	public func sendRawTransaction(rawTransaction: String, completion: ((String?, Error?) -> ())?) {
+		
+		let url = MinterExplorerAPIURL.send.url()
+		
+		self.httpClient.postRequest(url, parameters: ["transaction" : rawTransaction]) { (response, error) in
+			
+			var tx: String?
+			var err: Error?
+			
+			defer {
+				completion?(tx, err)
+			}
+			
+			guard nil == error else {
+				err = error
+				return
+			}
+			
+			if let resp = response.data as? [String : Any], let hash = resp["hash"] as? String {
+				tx = hash
+			}
+			else {
+				err = TransactionManagerError.canNotParseResponse
+			}
+		}
+	}
+	
+	public func count(for address: String, completion: ((Decimal?, Error?) -> ())?) {
+		
+		let url = MinterExplorerAPIURL.transactionsCount(address: address).url()
+		
+		self.httpClient.getRequest(url, parameters: ["address" : address]) { (response, error) in
+			
+			var count: Decimal?
+			var err: Error?
+			
+			defer {
+				completion?(count, err)
+			}
+			
+			guard nil == error else {
+				err = error
+				return
+			}
+			
+			if let data = response.data as? [String : Any], let cnt = data["count"] as? Int {
+				count = Decimal(cnt)
+			}
+			else {
+				err = TransactionManagerError.canNotParseResponse
+			}
+		}
+	}
+	
+	public func estimateCoinBuy(coinFrom: String, coinTo: String, value: Decimal, completion: ((Decimal?, Decimal?, Error?) -> ())?) {
+		
+		let url = MinterExplorerAPIURL.estimateCoinBuy.url()
+		
+		self.httpClient.getRequest(url, parameters: ["coinToBuy" : coinTo, "coinToSell" : coinFrom, "valueToBuy" : value]) { (response, error) in
+			
+			var willPay: Decimal?
+			var com: Decimal?
+			var err: Error?
+			
+			defer {
+				completion?(willPay, com, err)
+			}
+			
+			guard nil == error else {
+				err = error
+				return
+			}
+			
+			if let data = response.data as? [String : String], let pay = data["will_pay"], let commission = data["commission"] {
+				willPay = Decimal(string: pay)
+				com = Decimal(string: commission)
+			}
+			else {
+				err = TransactionManagerError.canNotParseResponse
+			}
+		}
+	}
+	
+	public func estimateCoinSell(coinFrom: String, coinTo: String, value: Decimal, completion: ((Decimal?, Decimal?, Error?) -> ())?) {
+		
+		let url = MinterExplorerAPIURL.estimateCoinSell.url()
+		
+		self.httpClient.getRequest(url, parameters: ["coinToBuy" : coinTo, "coinToSell" : coinFrom, "valueToSell" : value]) { (response, error) in
+			
+			var willGet: Decimal?
+			var com: Decimal?
+			var err: Error?
+			
+			defer {
+				completion?(willGet, com, err)
+			}
+			
+			guard nil == error else {
+				err = error
+				return
+			}
+			
+			if let data = response.data as? [String : String], let get = data["will_get"], let commission = data["commission"] {
+				willGet = Decimal(string: get)
+				com = Decimal(string: commission)
+			}
+			else {
+				err = TransactionManagerError.canNotParseResponse
+			}
+		}
+	}
+	
+	public func estimateTx(tx: String, completion: ((Decimal?, Error?) -> ())?) {
+		
+		let url = MinterExplorerAPIURL.transactionCommission.url()
+		
+		self.httpClient.getRequest(url, parameters: ["transaction" : tx]) { (response, error) in
+			
+			var com: Decimal?
+			var err: Error?
+			
+			defer {
+				completion?(com, err)
+			}
+			
+			guard nil == error else {
+				err = error
+				return
+			}
+			
+			if let data = response.data as? [String : String], let commission = data["commission"] {
+				com = Decimal(string: commission)
+			}
+			else {
+				err = TransactionManagerError.canNotParseResponse
+			}
+		}
+	}
+	
 }
