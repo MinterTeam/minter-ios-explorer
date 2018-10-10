@@ -74,6 +74,5 @@ public class ExplorerBlockManager : BaseManager {
 			res = jsonArray
 		}
 	}
-	
-	
+
 }

@@ -225,5 +225,5 @@ public class ExplorerTransactionManager : BaseManager {
 			}
 		}
 	}
-	
+
 }

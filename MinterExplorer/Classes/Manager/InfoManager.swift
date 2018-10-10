@@ -39,7 +39,7 @@ public class ExplorerInfoManager : BaseManager {
 			
 			res = jsonArray
 		}
-		
+
 	}
 	
 	/// Method retreives statusPage info from the Minter Explorer
@@ -99,5 +99,4 @@ public class ExplorerInfoManager : BaseManager {
 			res = jsonArray
 		}
 	}
-
 }

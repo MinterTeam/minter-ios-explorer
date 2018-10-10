@@ -61,7 +61,7 @@ enum MinterExplorerAPIURL {
 			return URL(string: MinterExplorerAPIBaseURL + "transactions/")!
 			
 		case .send:
-			return URL(string: MinterExplorerAPIBaseURL + "transaction/push/")!
+			return URL(string: MinterExplorerAPIBaseURL + "transaction/push")!
 			
 		case .transactionsCount(let address):
 			let ads = address.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!
