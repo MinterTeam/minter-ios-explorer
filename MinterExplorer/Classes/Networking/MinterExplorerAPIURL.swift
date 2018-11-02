@@ -49,7 +49,7 @@ enum MinterExplorerAPIURL {
 			return URL(string: MinterExplorerAPIBaseURL + "address/" + address.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!)!
 
 		case .addresses:
-			return URL(string: MinterExplorerAPIBaseURL + "address?")!
+			return URL(string: MinterExplorerAPIBaseURL + "address")!
 
 		case .balance(let address):
 			return URL(string: MinterExplorerAPIBaseURL + "balance/" + address.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!)!
@@ -58,7 +58,7 @@ enum MinterExplorerAPIURL {
 			return URL(string: MinterExplorerAPIBaseURL + "transaction/" + hash.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!)!
 
 		case .transactions:
-			return URL(string: MinterExplorerAPIBaseURL + "transactions/")!
+			return URL(string: MinterExplorerAPIBaseURL + "transactions")!
 			
 		case .send:
 			return URL(string: MinterExplorerAPIBaseURL + "transaction/push")!
@@ -68,22 +68,22 @@ enum MinterExplorerAPIURL {
 			return URL(string: MinterExplorerAPIBaseURL + "transaction/get-count/" + ads)!
 
 		case .balanceChannel:
-			return URL(string: MinterExplorerAPIBaseURL + "address/get-balance-channel")!
+			return URL(string: MinterExplorerAPIBaseURL + "address/get-balance-channel/")!
 			
 		case .block(let height):
 			return URL(string: MinterExplorerAPIBaseURL + "block/" + String(height))!
 			
 		case .blocks:
-			return URL(string: MinterExplorerAPIBaseURL + "blocks/")!
+			return URL(string: MinterExplorerAPIBaseURL + "blocks")!
 			
 		case .status:
-			return URL(string: MinterExplorerAPIBaseURL + "status/")!
+			return URL(string: MinterExplorerAPIBaseURL + "status")!
 			
 		case .statusPage:
-			return URL(string: MinterExplorerAPIBaseURL + "status-page/")!
+			return URL(string: MinterExplorerAPIBaseURL + "status-page")!
 			
 		case .txCountChartData:
-			return URL(string: MinterExplorerAPIBaseURL + "tx-count-chart-data/")!
+			return URL(string: MinterExplorerAPIBaseURL + "tx-count-chart-data")!
 			
 		case .estimateCoinBuy:
 			return URL(string: MinterExplorerAPIBaseURL + "estimate/coin-buy")!
