@@ -74,13 +74,13 @@ public class ExplorerInfoManager : BaseManager {
 	/// Method retreives transaction Count Chart data from the Minter Explorer
 	///
 	/// - Parameter completion: Method which will be called after request finishes
-	public func txCountChartData(with  completion: (([String : Any]?, Error?) -> ())?) {
+	public func txCountChartData(with completion: (([[String : Any]]?, Error?) -> ())?) {
 		
 		let url = MinterExplorerAPIURL.txCountChartData.url()
 		
 		self.httpClient.getRequest(url, parameters: nil) { (response, error) in
 			
-			var res: [String : Any]?
+			var res: [[String : Any]]?
 			var err: Error?
 			
 			defer {
@@ -92,7 +92,7 @@ public class ExplorerInfoManager : BaseManager {
 				return
 			}
 			
-			guard let jsonArray = response.data as? [String : Any] else {
+			guard let jsonArray = response.data as? [[String : Any]] else {
 				return
 			}
 			

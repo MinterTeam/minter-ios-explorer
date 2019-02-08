@@ -9,8 +9,14 @@ import Foundation
 import MinterCore
 import ObjectMapper
 
+/// Coin Manager
 public class ExplorerCoinManager : BaseManager {
 	
+	/// Method retreives coins from Explorer
+	///
+	/// - Parameters:
+	///   - term: term to find coins
+	///   - completion: Method which will be called after request completed
 	public func coins(term: String? = nil, completion: (([Coin]?, Error?) -> ())?) {
 		
 		var params = [String : Any]()

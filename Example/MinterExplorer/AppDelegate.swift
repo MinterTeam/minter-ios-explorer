@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MinterExplorer
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,6 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+			
+			
+			MinterExplorerSDK.initialize(urlString: "https://testnet.explorer.minter.network", websocketUrlString: "wss://rtm2.explorer.minter.network/connection/websocket")
+			
         // Override point for customization after application launch.
         return true
     }

@@ -7,9 +7,9 @@
 
 import Foundation
 
-public let MinterExplorerBaseURL = "https://testnet.explorer.minter.network"
-public let MinterExplorerAPIBaseURL = "https://testnet.explorer.minter.network/api/v1/"
-public let MinterExplorerWebSocketURL = "wss://rtm.explorer.minter.network/connection/websocket"
+public let MinterExplorerBaseURL = MinterExplorerSDK.shared.url?.absoluteString
+public let MinterExplorerAPIBaseURL = (MinterExplorerSDK.shared.url?.absoluteString ?? "") + "/api/v1/"
+public let MinterExplorerWebSocketURL = MinterExplorerSDK.shared.websocketUrl
 
 
 enum MinterExplorerAPIURL {
@@ -23,13 +23,14 @@ enum MinterExplorerAPIURL {
 	case send
 	case transactionsCount(address: String)
 	
+	case minGas
+	
 	case estimateCoinSell
 	case estimateCoinBuy
 	case transactionCommission
 	
 	case address(address: String)
 	case addresses
-	case balanceChannel
 	
 	case block(height: Int)
 	case blocks
@@ -66,9 +67,6 @@ enum MinterExplorerAPIURL {
 		case .transactionsCount(let address):
 			let ads = address.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!
 			return URL(string: MinterExplorerAPIBaseURL + "transaction/get-count/" + ads)!
-
-		case .balanceChannel:
-			return URL(string: MinterExplorerAPIBaseURL + "address/get-balance-channel/")!
 			
 		case .block(let height):
 			return URL(string: MinterExplorerAPIBaseURL + "block/" + String(height))!
@@ -93,6 +91,9 @@ enum MinterExplorerAPIURL {
 			
 		case .transactionCommission:
 			return URL(string: MinterExplorerAPIBaseURL + "estimate/tx-commission")!
+			
+		case .minGas:
+			return URL(string: MinterExplorerAPIBaseURL + "min-gas")!
 			
 		}
 	}

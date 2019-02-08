@@ -11,7 +11,7 @@ import MinterCore
 
 
 public class TransactionData {
-	public var from: String?
+//	public var from: String?
 	public var to: String?
 }
 
@@ -30,7 +30,7 @@ public class SendCoinTransactionDataMappable : SendCoinTransactionData, Mappable
 	
 	public func mapping(map: Map) {
 		to <- (map["to"], MinterCore.AddressTransformer())
-		from <- (map["from"], MinterCore.AddressTransformer())
+//		from <- (map["from"], MinterCore.AddressTransformer())
 		coin <- map["coin"]
 		amount <- map["amount"]
 		//TODO: to transformer
@@ -75,7 +75,7 @@ public class ConvertTransactionDataMappable : ConvertTransactionData, Mappable {
 			valueToSell = Decimal(string: valueStr)
 		}
 		
-		from <- (map["from"], AddressTransformer())
+//		from <- (map["from"], AddressTransformer())
 		to <- (map["from"], AddressTransformer())
 	}
 }
@@ -96,7 +96,7 @@ public class SellAllCoinsTransactionDataMappable : SellAllCoinsTransactionData, 
 	
 	public func mapping(map: Map) {
 		to <- (map["from"], AddressTransformer())
-		from <- (map["from"], AddressTransformer())
+//		from <- (map["from"], AddressTransformer())
 		fromCoin <- map["coin_to_sell"]
 		toCoin <- map["coin_to_buy"]
 		value <- map["value_to_buy"]
@@ -127,7 +127,7 @@ public class DelegateTransactionDataMappable : DelegateTransactionData, Mappable
 		pubKey <- map["pub_key"]
 		coin <- map["coin"]
 		stake <- map["stake"]
-		from <- (map["from"], MinterCore.AddressTransformer())
+//		from <- (map["from"], MinterCore.AddressTransformer())
 		//TODO: to transformer
 		if let valueStr = map.JSON["stake"] as? String {
 			stake = Decimal(string: valueStr)

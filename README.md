@@ -60,13 +60,6 @@ addressesManager?.addresses(addresses: addresses, completion: { (addresses, erro
   print(addresses)
   print(error)
 })
-/// Web-socket channel to get live balance changes
-addressesManager?.balanceChannel(addresses: addresses, completion: { (chanel, token, timestamp, error) in
-  print(chanel)
-  print(token)
-  print(timestamp)
-  print(error)
-})
 ```
 **Get Network Status**
 ```swift

@@ -38,7 +38,7 @@ open class Transaction {
 /// Transaction Mapper
 class TransactionMappable : Transaction, Mappable {
 	
-	private static let dateFormatter = DateFormatter(withFormat: "yyyy-MM-dd HH:mm:ss+zzzz", locale: Locale.current.identifier)
+	private static let dateFormatter = DateFormatter(withFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ", locale: Locale.current.identifier)
 	
 	//MARK: - Mappable
 	

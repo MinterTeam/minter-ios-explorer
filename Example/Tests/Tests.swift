@@ -5,7 +5,7 @@ import Nimble
 //import MinterExplorer
 
 class TableOfContentsSpec: QuickSpec {
-    override func spec() {
+//    override func spec() {
 //        describe("these will fail") {
 //
 //            it("can do maths") {
@@ -46,5 +46,5 @@ class TableOfContentsSpec: QuickSpec {
 //                }
 //            }
 //        }
-    }
+//    }
 }

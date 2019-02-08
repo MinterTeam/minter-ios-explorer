@@ -15,6 +15,13 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		FA46392C21CCF0B1001846D9 /* TransactionDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA46392A21CCF0B1001846D9 /* TransactionDataTests.swift */; };
+		FA46392E21CD3DB7001846D9 /* SendTransactionDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA46392D21CD3DB7001846D9 /* SendTransactionDataTests.swift */; };
+		FA46393121D0F00F001846D9 /* AddressManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA46393021D0F00E001846D9 /* AddressManagerTests.swift */; };
+		FA46393321D1263F001846D9 /* CoinManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA46393221D1263F001846D9 /* CoinManagerTests.swift */; };
+		FA46393521D12C61001846D9 /* BlockManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA46393421D12C61001846D9 /* BlockManagerTests.swift */; };
+		FAD2F57521E24F9F00787B2E /* InfoManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD2F57321E24F4D00787B2E /* InfoManagerTests.swift */; };
+		FAD2F57721E2511A00787B2E /* TransactionManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD2F57621E2511A00787B2E /* TransactionManagerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +54,13 @@
 		E575790EB1097AB57EC0D04B /* Pods-MinterExplorer_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MinterExplorer_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MinterExplorer_Tests/Pods-MinterExplorer_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		E6043D963204B5FCFE659947 /* Pods_MinterExplorer_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MinterExplorer_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E75BFA9ABA258C023CE990B6 /* Pods-MinterExplorer_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MinterExplorer_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MinterExplorer_Tests/Pods-MinterExplorer_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		FA46392A21CCF0B1001846D9 /* TransactionDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDataTests.swift; sourceTree = "<group>"; };
+		FA46392D21CD3DB7001846D9 /* SendTransactionDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendTransactionDataTests.swift; sourceTree = "<group>"; };
+		FA46393021D0F00E001846D9 /* AddressManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressManagerTests.swift; sourceTree = "<group>"; };
+		FA46393221D1263F001846D9 /* CoinManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinManagerTests.swift; sourceTree = "<group>"; };
+		FA46393421D12C61001846D9 /* BlockManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockManagerTests.swift; sourceTree = "<group>"; };
+		FAD2F57321E24F4D00787B2E /* InfoManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoManagerTests.swift; sourceTree = "<group>"; };
+		FAD2F57621E2511A00787B2E /* TransactionManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionManagerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +138,8 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				FA46392F21D0EFE2001846D9 /* Manager */,
+				FA46392921CCF0A4001846D9 /* Model */,
 				607FACEB1AFB9204008FA782 /* Tests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
@@ -157,6 +173,27 @@
 				E575790EB1097AB57EC0D04B /* Pods-MinterExplorer_Tests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		FA46392921CCF0A4001846D9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FA46392A21CCF0B1001846D9 /* TransactionDataTests.swift */,
+				FA46392D21CD3DB7001846D9 /* SendTransactionDataTests.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		FA46392F21D0EFE2001846D9 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				FA46393021D0F00E001846D9 /* AddressManagerTests.swift */,
+				FA46393221D1263F001846D9 /* CoinManagerTests.swift */,
+				FA46393421D12C61001846D9 /* BlockManagerTests.swift */,
+				FAD2F57321E24F4D00787B2E /* InfoManagerTests.swift */,
+				FAD2F57621E2511A00787B2E /* TransactionManagerTests.swift */,
+			);
+			name = Manager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -213,6 +250,7 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = A26H28FPZU;
 						LastSwiftMigration = 0900;
 					};
 					607FACE41AFB9204008FA782 = {
@@ -337,16 +375,28 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MinterExplorer_Tests/Pods-MinterExplorer_Tests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/FBSnapshotTestCase/FBSnapshotTestCase.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/BigInt/BigInt.framework",
+				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/MinterCore/MinterCore.framework",
+				"${BUILT_PRODUCTS_DIR}/MinterExplorer/MinterExplorer.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/SipHash/SipHash.framework",
+				"${BUILT_PRODUCTS_DIR}/secp256k1.swift/secp256k1.framework",
 				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
-				"${BUILT_PRODUCTS_DIR}/Nimble-Snapshots/Nimble_Snapshots.framework",
 				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSnapshotTestCase.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BigInt.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MinterCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MinterExplorer.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SipHash.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/secp256k1.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble_Snapshots.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -370,7 +420,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA46393121D0F00F001846D9 /* AddressManagerTests.swift in Sources */,
+				FA46392E21CD3DB7001846D9 /* SendTransactionDataTests.swift in Sources */,
+				FA46393321D1263F001846D9 /* CoinManagerTests.swift in Sources */,
+				FAD2F57521E24F9F00787B2E /* InfoManagerTests.swift in Sources */,
+				FAD2F57721E2511A00787B2E /* TransactionManagerTests.swift in Sources */,
 				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
+				FA46392C21CCF0B1001846D9 /* TransactionDataTests.swift in Sources */,
+				FA46393521D12C61001846D9 /* BlockManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -508,6 +565,7 @@
 			baseConfigurationReference = 22AF00A3820C37AA978A3C5E /* Pods-MinterExplorer_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = A26H28FPZU;
 				INFOPLIST_FILE = MinterExplorer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
@@ -523,6 +581,7 @@
 			baseConfigurationReference = 8BD9C1B8CD9A0797B0E5EC15 /* Pods-MinterExplorer_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = A26H28FPZU;
 				INFOPLIST_FILE = MinterExplorer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
@@ -551,6 +610,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MinterExplorer_Example.app/MinterExplorer_Example";
 			};
 			name = Debug;
 		};
@@ -568,6 +628,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MinterExplorer_Example.app/MinterExplorer_Example";
 			};
 			name = Release;
 		};
