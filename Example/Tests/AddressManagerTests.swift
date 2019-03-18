@@ -73,15 +73,15 @@ class AddressManagerTestsSpec: QuickSpec {
 				}
 			}
 			
-			it("Should show get info on multiple addresses") {
+			it("Shouldn't show get info on multiple addresses with at least one invalid") {
 				
 				self.manager = ExplorerAddressManager(httpClient: self.httpClient)
 				expect(self.manager).toNot(beNil())
 				
 				waitUntil(timeout: 10.0) { done in
 					self.manager?.addresses(addresses: ["11", "Mxa82fdcc182090751d4b66e956810c7e1e2e92ecc"], completion: { (res, error) in
-						expect(error).to(beNil())
-						expect(res).toNot(beNil())
+						expect(error).toNot(beNil())
+						expect(res).to(beNil())
 						done()
 					})
 				}

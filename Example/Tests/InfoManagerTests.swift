@@ -52,18 +52,6 @@ class ExplorerInfoManagerTestsSpec: QuickSpec {
 				}
 			}
 			
-			it("Manager can get txCountChartData") {
-				self.manager = ExplorerInfoManager(httpClient: self.httpClient)
-				
-				waitUntil(timeout: 10.0) { done in
-					self.manager.txCountChartData(with: { (resp, error) in
-						expect(resp).toNot(beNil())
-						expect(error).to(beNil())
-						done()
-					})
-				}
-			}
-			
 		}
 	}
 }

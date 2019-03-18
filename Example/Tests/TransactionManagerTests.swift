@@ -34,7 +34,7 @@ class TransactionManagerTestsSpec: QuickSpec {
 				expect(self.manager).toNot(beNil())
 				
 				waitUntil(timeout: 10.0) { done in
-					self.manager.transactions(addresses: ["Mx184ac726059e43643e67290666f7b3195093f870"], completion: { (transactions, error) in
+					self.manager.transactions(addresses: ["Mx89f5395a03847826d6b48bb02dbde64376945a20"], completion: { (transactions, error) in
 						expect(transactions).toNot(beNil())
 						expect(transactions?.count).to(beGreaterThan(0))
 						done()
@@ -47,7 +47,7 @@ class TransactionManagerTestsSpec: QuickSpec {
 				
 				expect(self.manager).toNot(beNil())
 				
-				let hash = "Mte74b8a1cadfc6464fa0d8f4d0bd51fcb5035ced7a9bc2c055b59a65d3f9566c2"
+				let hash = "Mt83bb967a2ffd5f22bf47d282d183fc550ead99a3be0f8b6f9a6a246cce425435"
 				
 				waitUntil(timeout: 10.0) { done in
 					self.manager.transaction(hash: hash, completion: { (transaction, error) in
@@ -73,75 +73,6 @@ class TransactionManagerTestsSpec: QuickSpec {
 					})
 				}
 			}
-			
-			it("Can get transactions count") {
-				self.manager = ExplorerTransactionManager(httpClient: self.httpClient)
-				
-				expect(self.manager).toNot(beNil())
-				
-				let address = "Mx184ac726059e43643e67290666f7b3195093f870"
-				
-				waitUntil(timeout: 10.0) { done in
-					self.manager.count(for: address, completion: { (count, error) in
-						
-						expect(count).toNot(beNil())
-						expect(count).to(beGreaterThan(0))
-						expect(error).to(beNil())
-						done()
-					})
-				}
-			}
-			
-			it("Can get retreive estimates") {
-				self.manager = ExplorerTransactionManager(httpClient: self.httpClient)
-				
-				expect(self.manager).toNot(beNil())
-				
-				waitUntil(timeout: 10.0) { done in
-					self.manager.estimateCoinBuy(coinFrom: "MNT", coinTo: "VALIDATOR", value: Decimal(1000000000000.0), completion: { (res1, res2, error) in
-						expect(res1).toNot(beNil())
-						expect(res1).to(beGreaterThan(0))
-						expect(res2).toNot(beNil())
-						expect(res2).to(beGreaterThan(0))
-						
-						expect(error).to(beNil())
-						done()
-					})
-				}
-			}
-			
-			it("Can get retreive estimates") {
-				self.manager = ExplorerTransactionManager(httpClient: self.httpClient)
-				
-				expect(self.manager).toNot(beNil())
-				
-				waitUntil(timeout: 10.0) { done in
-					self.manager.estimateCoinSell(coinFrom: "MNT", coinTo: "VALIDATOR", value: Decimal(1000000000000.0), completion: { (res1, res2, error) in
-						expect(res1).toNot(beNil())
-						expect(res1).to(beGreaterThan(0))
-						expect(res2).toNot(beNil())
-						expect(res2).to(beGreaterThan(0))
-						
-						expect(error).to(beNil())
-						done()
-					})
-				}
-			}
-			
-			it("Can get retreive estimates") {
-				self.manager = ExplorerTransactionManager(httpClient: self.httpClient)
-				
-				expect(self.manager).toNot(beNil())
-				
-				waitUntil(timeout: 10.0) { done in
-					self.manager.sendRawTransaction(rawTransaction: "fakeRawTxHere", completion: { (res, error) in
-						
-						expect(error).toNot(beNil())
-						done()
-					})
-				}
-			}
-
 		}
 	}
 }

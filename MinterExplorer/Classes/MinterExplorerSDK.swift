@@ -15,17 +15,23 @@ public class MinterExplorerSDK {
 	public static let shared = MinterExplorerSDK()
 	
 	/// Explorer url
-	internal var url: URL? = nil
+	internal var APIURL: URL? = nil
 	
-	internal var websocketUrl: URL? = nil
+	internal var websocketURL: URL? = nil
+	
+	internal var webURL: URL? = nil
 	
 	/// MinterExplorer SDK initializer
-	public class func initialize(urlString: String, websocketUrlString: String?) {
-		shared.url = URL(string: urlString)
+	public class func initialize(APIURLString: String, WEBURLString: String?, websocketURLString: String?) {
+		shared.APIURL = URL(string: APIURLString)
 		
-		if let websocketUrl = websocketUrlString {
-			shared.websocketUrl = URL(string: websocketUrl)
+		if let websocketUrl = websocketURLString {
+			shared.websocketURL = URL(string: websocketUrl)
+		}
+		
+		if let webURL = WEBURLString {
+			shared.webURL = URL(string: webURL)
 		}
 	}
-	
+
 }

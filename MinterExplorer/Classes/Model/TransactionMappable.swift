@@ -6,23 +6,12 @@
 //
 
 import Foundation
+import MinterCore
 import ObjectMapper
 import BigInt
 
-
-
 /// Transaction Model
 open class Transaction {
-	
-	/// Transaction type
-	public enum TransactionType: String {
-		case send = "send"
-		case buy = "buyCoin"
-		case sell = "sellCoin"
-		case sellAllCoins = "sellAllCoin"
-		case delegate = "delegate"
-		case unbond = "unbond"
-	}
 	
 	public init() {}
 	
@@ -38,7 +27,7 @@ open class Transaction {
 /// Transaction Mapper
 class TransactionMappable : Transaction, Mappable {
 	
-	private static let dateFormatter = DateFormatter(withFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ", locale: Locale.current.identifier)
+	private static let dateFormatter = DateFormatter(withFormat: "yyyy-MM-dd'T'HH:mm:ssZZZZZ", locale: Locale.current.identifier)
 	
 	//MARK: - Mappable
 	
@@ -48,7 +37,7 @@ class TransactionMappable : Transaction, Mappable {
 	
 	func mapping(map: Map) {
 		self.hash <- map["hash"]
-		self.type <- map["type"]
+		self.type <- (map["type"], TransactionTypeTransformer())
 		self.txn <- map["txn"]
 		self.from <- map["from"]
 		
@@ -62,7 +51,11 @@ class TransactionMappable : Transaction, Mappable {
 				self.data = Mapper<SendCoinTransactionDataMappable>().map(JSON: data)
 				break
 				
-			case .sellAllCoins:
+			case .multisend:
+				self.data = Mapper<MultisendTransactionDataMappable>().map(JSON: data)
+				break
+				
+			case .sellAll:
 				self.data = Mapper<SellAllCoinsTransactionDataMappable>().map(JSON: data)
 				break
 				
@@ -72,6 +65,9 @@ class TransactionMappable : Transaction, Mappable {
 				
 			case .unbond:
 				self.data = Mapper<DelegateTransactionDataMappable>().map(JSON: data)
+				break
+				
+			default:
 				break
 			}
 		}

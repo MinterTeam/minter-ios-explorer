@@ -32,6 +32,13 @@ public class ExplorerAddressManager : BaseManager {
 			}
 			
 			guard nil == error, let data = response.data as? [String : Any] else {
+				if nil == error {
+					err = BaseManagerError.badResponse
+				}
+				else {
+					err = error
+				}
+				
 				return
 			}
 			
@@ -62,11 +69,19 @@ public class ExplorerAddressManager : BaseManager {
 			}
 			
 			guard nil == error, let data = response.data as? [[String : Any]] else {
+				if nil == error {
+					err = BaseManagerError.badResponse
+				}
+				else {
+					err = error
+				}
+				
 				return
 			}
-			
+
 			addresses = data
 			
 		}
 	}
+	
 }

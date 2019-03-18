@@ -7,9 +7,9 @@
 
 import Foundation
 
-public let MinterExplorerBaseURL = MinterExplorerSDK.shared.url?.absoluteString
-public let MinterExplorerAPIBaseURL = (MinterExplorerSDK.shared.url?.absoluteString ?? "") + "/api/v1/"
-public let MinterExplorerWebSocketURL = MinterExplorerSDK.shared.websocketUrl
+public let MinterExplorerBaseURL = MinterExplorerSDK.shared.webURL?.absoluteString
+public let MinterExplorerAPIBaseURL = (MinterExplorerSDK.shared.APIURL?.absoluteString ?? "") + "/api/v1/"
+public let MinterExplorerWebSocketURL = MinterExplorerSDK.shared.websocketURL
 
 
 enum MinterExplorerAPIURL {
@@ -43,20 +43,24 @@ enum MinterExplorerAPIURL {
 	func url() -> URL {
 		switch self {
 			
-		case .coins:
-			return URL(string: MinterExplorerAPIBaseURL + "coins")!
+		//Address
 
 		case .address(let address):
-			return URL(string: MinterExplorerAPIBaseURL + "address/" + address.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!)!
-
+			return URL(string: MinterExplorerAPIBaseURL + "addresses/" + address.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!)!
+			
 		case .addresses:
-			return URL(string: MinterExplorerAPIBaseURL + "address")!
+			return URL(string: MinterExplorerAPIBaseURL + "addresses")!
+			
+		//
+			
+		case .coins:
+			return URL(string: MinterExplorerAPIBaseURL + "coins")!
 
 		case .balance(let address):
 			return URL(string: MinterExplorerAPIBaseURL + "balance/" + address.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!)!
 
 		case .transaction(let hash):
-			return URL(string: MinterExplorerAPIBaseURL + "transaction/" + hash.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!)!
+			return URL(string: MinterExplorerAPIBaseURL + "transactions/" + hash.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!)!
 
 		case .transactions:
 			return URL(string: MinterExplorerAPIBaseURL + "transactions")!
@@ -69,7 +73,7 @@ enum MinterExplorerAPIURL {
 			return URL(string: MinterExplorerAPIBaseURL + "transaction/get-count/" + ads)!
 			
 		case .block(let height):
-			return URL(string: MinterExplorerAPIBaseURL + "block/" + String(height))!
+			return URL(string: MinterExplorerAPIBaseURL + "blocks/" + String(height))!
 			
 		case .blocks:
 			return URL(string: MinterExplorerAPIBaseURL + "blocks")!
