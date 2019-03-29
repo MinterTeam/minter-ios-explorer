@@ -20,30 +20,22 @@ enum MinterExplorerAPIURL {
 	
 	case transactions
 	case transaction(hash: String)
-	case send
-	case transactionsCount(address: String)
-	
-	case minGas
-	
-	case estimateCoinSell
-	case estimateCoinBuy
-	case transactionCommission
 	
 	case address(address: String)
 	case addresses
 	
 	case block(height: Int)
+	case blockTransaction(height: Int)
 	case blocks
 	
 	case status
 	case statusPage
-	case txCountChartData
 	
 	
 	func url() -> URL {
 		switch self {
 			
-		//Address
+		// Address
 
 		case .address(let address):
 			return URL(string: MinterExplorerAPIBaseURL + "addresses/" + address.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!)!
@@ -51,7 +43,7 @@ enum MinterExplorerAPIURL {
 		case .addresses:
 			return URL(string: MinterExplorerAPIBaseURL + "addresses")!
 			
-		//
+		// Coins
 			
 		case .coins:
 			return URL(string: MinterExplorerAPIBaseURL + "coins")!
@@ -65,18 +57,18 @@ enum MinterExplorerAPIURL {
 		case .transactions:
 			return URL(string: MinterExplorerAPIBaseURL + "transactions")!
 			
-		case .send:
-			return URL(string: MinterExplorerAPIBaseURL + "transaction/push")!
-			
-		case .transactionsCount(let address):
-			let ads = address.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!
-			return URL(string: MinterExplorerAPIBaseURL + "transaction/get-count/" + ads)!
+		// Blocks
 			
 		case .block(let height):
 			return URL(string: MinterExplorerAPIBaseURL + "blocks/" + String(height))!
 			
+		case .blockTransaction(let height):
+			return URL(string: MinterExplorerAPIBaseURL + "blocks/" + String(height) + "/transactions")!
+			
 		case .blocks:
 			return URL(string: MinterExplorerAPIBaseURL + "blocks")!
+			
+		// Status
 			
 		case .status:
 			return URL(string: MinterExplorerAPIBaseURL + "status")!
@@ -84,20 +76,7 @@ enum MinterExplorerAPIURL {
 		case .statusPage:
 			return URL(string: MinterExplorerAPIBaseURL + "status-page")!
 			
-		case .txCountChartData:
-			return URL(string: MinterExplorerAPIBaseURL + "tx-count-chart-data")!
-			
-		case .estimateCoinBuy:
-			return URL(string: MinterExplorerAPIBaseURL + "estimate/coin-buy")!
-			
-		case .estimateCoinSell:
-			return URL(string: MinterExplorerAPIBaseURL + "estimate/coin-sell")!
-			
-		case .transactionCommission:
-			return URL(string: MinterExplorerAPIBaseURL + "estimate/tx-commission")!
-			
-		case .minGas:
-			return URL(string: MinterExplorerAPIBaseURL + "min-gas")!
+		//
 			
 		}
 	}

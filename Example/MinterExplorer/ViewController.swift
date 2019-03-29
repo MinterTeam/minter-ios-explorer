@@ -109,17 +109,22 @@ class ViewController: UIViewController {
 //		})
 //
 //
-//		blockManager = ExplorerBlockManager(httpClient: http)
-//		blockManager?.block(height: 1, completion: { (block, error) in
-//			print(block ?? "")
-//			print(error ?? "")
-//		})
-//
-//		blockManager?.blocks(page: 1, completion: { (blocks, error) in
-//			print(blocks ?? "")
-//			print(error ?? "")
-//		})
+		blockManager = ExplorerBlockManager(httpClient: http)
+		blockManager?.block(height: 1, completion: { (block, error) in
+			print(block ?? "")
+			print(error ?? "")
+		})
+
+		blockManager?.blocks(page: 1, completion: { (blocks, error) in
+			print(blocks ?? "")
+			print(error ?? "")
+		})
 		
+		blockManager?.transactions(blockHeight: 525116, completion: { (transactions, error) in
+			print(transactions)
+			print(error)
+		})
+
 	}
 
 	override func didReceiveMemoryWarning() {

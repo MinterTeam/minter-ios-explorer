@@ -75,11 +75,6 @@ infoManager?.statusPage(with: { (status, error) in
   print(status)
   print(error)
 })
-/// Transaction Count Chart Info
-infoManager?.txCountChartData(with: { (data, error) in
-  print(data)
-  print(error)
-})
 ```
 **Get Block Info**
 ```swift

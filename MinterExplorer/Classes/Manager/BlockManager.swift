@@ -7,6 +7,7 @@
 
 import Foundation
 import MinterCore
+import ObjectMapper
 
 
 public class ExplorerBlockManager : BaseManager {
@@ -73,6 +74,35 @@ public class ExplorerBlockManager : BaseManager {
 			
 			res = jsonArray
 		}
+	}
+	
+	public func transactions(blockHeight: Int, completion: (([Transaction]?, Error?) -> ())?) {
+		
+		let url = MinterExplorerAPIURL.blockTransaction(height: blockHeight).url()
+		
+		self.httpClient.getRequest(url, parameters: nil) { (response, error) in
+			
+			var res: [Transaction]?
+			var err: Error?
+			
+			defer {
+				completion?(res, err)
+			}
+			
+			guard nil == error else {
+				err = error
+				return
+			}
+			
+			guard let jsonArray = response.data as? [[String : Any]] else {
+				err = BaseManagerError.badResponse
+				return
+			}
+			
+			res = Mapper<TransactionMappable>().mapArray(JSONArray: jsonArray)
+			
+		}
+		
 	}
 
 }

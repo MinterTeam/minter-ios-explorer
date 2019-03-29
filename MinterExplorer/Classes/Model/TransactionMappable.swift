@@ -12,9 +12,9 @@ import BigInt
 
 /// Transaction Model
 open class Transaction {
-	
+
 	public init() {}
-	
+
 	public var hash: String?
 	public var type: TransactionType?
 	public var txn: Int?
@@ -23,50 +23,49 @@ open class Transaction {
 	public var from: String?
 }
 
-
 /// Transaction Mapper
 class TransactionMappable : Transaction, Mappable {
-	
+
 	private static let dateFormatter = DateFormatter(withFormat: "yyyy-MM-dd'T'HH:mm:ssZZZZZ", locale: Locale.current.identifier)
-	
-	//MARK: - Mappable
-	
+
+	// MARK: - Mappable
+
 	required init?(map: Map) {
 		super.init()
 	}
-	
+
 	func mapping(map: Map) {
 		self.hash <- map["hash"]
 		self.type <- (map["type"], TransactionTypeTransformer())
 		self.txn <- map["txn"]
 		self.from <- map["from"]
-		
+
 		if nil != type, let data = map.JSON["data"] as? [String : Any] {
 			switch type! {
 			case .sell, .buy:
 				self.data = Mapper<ConvertTransactionDataMappable>().map(JSON: data)
 				break
-				
+
 			case .send:
 				self.data = Mapper<SendCoinTransactionDataMappable>().map(JSON: data)
 				break
-				
+
 			case .multisend:
 				self.data = Mapper<MultisendTransactionDataMappable>().map(JSON: data)
 				break
-				
+
 			case .sellAll:
 				self.data = Mapper<SellAllCoinsTransactionDataMappable>().map(JSON: data)
 				break
-				
+
 			case .delegate:
 				self.data = Mapper<DelegateTransactionDataMappable>().map(JSON: data)
 				break
-				
+
 			case .unbond:
-				self.data = Mapper<DelegateTransactionDataMappable>().map(JSON: data)
+				self.data = Mapper<UnbondTransactionDataMappable>().map(JSON: data)
 				break
-				
+
 			default:
 				break
 			}

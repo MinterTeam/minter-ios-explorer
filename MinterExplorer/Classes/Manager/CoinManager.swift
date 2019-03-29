@@ -43,6 +43,9 @@ public class ExplorerCoinManager : BaseManager {
 			if let coinsArray = response.data as? [[String : Any]] {
 				coins = Mapper<CoinMappable>().mapArray(JSONArray: coinsArray)
 			}
+			else {
+				err = BaseManagerError.badResponse
+			}
 		}
 	}
 }
