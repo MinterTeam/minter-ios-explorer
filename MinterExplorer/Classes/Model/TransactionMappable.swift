@@ -51,7 +51,7 @@ class TransactionMappable : Transaction, Mappable {
 				break
 
 			case .multisend:
-				self.data = Mapper<MultisendTransactionDataMappable>().map(JSON: data)
+				self.data = Mapper<MultisendCoinTransactionDataMappable>().map(JSON: data)
 				break
 
 			case .sellAll:

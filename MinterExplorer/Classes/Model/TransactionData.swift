@@ -44,7 +44,7 @@ internal class SendCoinTransactionDataMappable: SendCoinTransactionData, Mappabl
 	}
 }
 
-internal class MultisendTransactionDataMappable: MultisendCoinTransactionData, Mappable {
+internal class MultisendCoinTransactionDataMappable: MultisendCoinTransactionData, Mappable {
 
 	required public init?(map: Map) {
 		super.init()
@@ -146,4 +146,3 @@ public class UnbondTransactionData: TransactionData, DelegatableUnbondableTransa
 }
 
 internal class UnbondTransactionDataMappable: DelegateTransactionDataMappable {}
-
