@@ -66,6 +66,11 @@ class TransactionMappable : Transaction, Mappable {
 				self.data = Mapper<UnbondTransactionDataMappable>().map(JSON: data)
 				break
 
+			case .redeemCheck:
+				self.data = Mapper<RedeemCheckRawTransactionDataMappable>().map(JSON: data)
+				self.from <- map["check.sender"]
+				break
+
 			default:
 				break
 			}

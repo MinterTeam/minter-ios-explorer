@@ -146,3 +146,31 @@ public class UnbondTransactionData: TransactionData, DelegatableUnbondableTransa
 }
 
 internal class UnbondTransactionDataMappable: DelegateTransactionDataMappable {}
+
+/// RedeemCheckTransaction class
+public class RedeemCheckRawTransactionData: TransactionData {
+	public var rawCheck: String?
+	public var proof: String?
+	public var sender: String?
+	public var dueBlock: Int?
+	public var coin: String?
+	public var value: Decimal?
+}
+
+internal class RedeemCheckRawTransactionDataMappable: RedeemCheckRawTransactionData, Mappable {
+
+	required public init?(map: Map) {
+		super.init()
+		
+		mapping(map: map)
+	}
+
+	public func mapping(map: Map) {
+		rawCheck <- map["raw_check"]
+		proof <- map["proof"]
+		sender <- map["check.sender"]
+		dueBlock <- map["check.due_block"]
+		coin <- map["check.coin"]
+		value <- (map["check.value"], DecimalTransformer())
+	}
+}
