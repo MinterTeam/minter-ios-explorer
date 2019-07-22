@@ -93,7 +93,9 @@ internal class ConvertTransactionDataMappable: ConvertTransactionData, Mappable 
 public class SellAllCoinsTransactionData: TransactionData {
 	public var fromCoin: String?
 	public var toCoin: String?
-	public var value: Decimal?
+	public var valueToSell: Decimal?
+	public var valueToBuy: Decimal?
+	public var minimumValueToBuy: Decimal?
 }
 
 internal class SellAllCoinsTransactionDataMappable: SellAllCoinsTransactionData, Mappable {
@@ -108,7 +110,9 @@ internal class SellAllCoinsTransactionDataMappable: SellAllCoinsTransactionData,
 		to <- (map["from"], AddressTransformer())
 		fromCoin <- map["coin_to_sell"]
 		toCoin <- map["coin_to_buy"]
-		value <- (map["value_to_buy"], DecimalTransformer())
+		valueToSell <- (map["value_to_sell"], DecimalTransformer())
+		valueToBuy <- (map["value_to_buy"], DecimalTransformer())
+		minimumValueToBuy <- (map["minimum_value_to_buy"], DecimalTransformer())
 	}
 }
 
@@ -161,7 +165,7 @@ internal class RedeemCheckRawTransactionDataMappable: RedeemCheckRawTransactionD
 
 	required public init?(map: Map) {
 		super.init()
-		
+
 		mapping(map: map)
 	}
 
@@ -173,4 +177,77 @@ internal class RedeemCheckRawTransactionDataMappable: RedeemCheckRawTransactionD
 		coin <- map["check.coin"]
 		value <- (map["check.value"], DecimalTransformer())
 	}
+}
+
+/// DeclareCandidacyRawTransactionData class
+public class DeclareCandidacyTransactionData: TransactionData {
+	public var pubKey: String?
+	public var coin: String?
+	public var stake: Decimal?
+	public var address: String?
+}
+
+internal class DeclareCandidacyTransactionDataMappable: DeclareCandidacyTransactionData, Mappable {
+
+	// MARK: -
+
+	required public init?(map: Map) {
+		super.init()
+
+		mapping(map: map)
+	}
+
+	public func mapping(map: Map) {
+		pubKey <- map["pub_key"]
+		coin <- map["coin"]
+		stake <- (map["stake"], DecimalTransformer())
+		address <- (map["address"], AddressTransformer())
+	}
+
+}
+
+///  SetCandidateBaseTransactionData class
+public class SetCandidateBaseTransactionData: TransactionData {
+	public var pubKey: String?
+}
+
+internal class SetCandidateBaseTransactionDataMappable: SetCandidateBaseTransactionData, Mappable {
+
+	// MARK: -
+
+	required public init?(map: Map) {
+		super.init()
+		
+		mapping(map: map)
+	}
+
+	public func mapping(map: Map) {
+		pubKey <- map["pub_key"]
+	}
+
+}
+
+/// EditCandidateTransactionData class
+public class EditCandidateTransactionData: TransactionData {
+	public var pubKey: String?
+	public var rewardAddress: String?
+	public var ownerAddress: String?
+}
+
+internal class EditCandidateTransactionDataMappable: EditCandidateTransactionData, Mappable {
+
+	// MARK: -
+
+	required public init?(map: Map) {
+		super.init()
+
+		mapping(map: map)
+	}
+
+	public func mapping(map: Map) {
+		pubKey <- map["pub_key"]
+		rewardAddress <- (map["rewardAddress"], AddressTransformer())
+		ownerAddress <- (map["ownerAddress"], AddressTransformer())
+	}
+
 }

@@ -24,7 +24,7 @@ open class Transaction {
 }
 
 /// Transaction Mapper
-class TransactionMappable : Transaction, Mappable {
+class TransactionMappable: Transaction, Mappable {
 
 	private static let dateFormatter = DateFormatter(withFormat: "yyyy-MM-dd'T'HH:mm:ssZZZZZ", locale: Locale.current.identifier)
 
@@ -69,6 +69,22 @@ class TransactionMappable : Transaction, Mappable {
 			case .redeemCheck:
 				self.data = Mapper<RedeemCheckRawTransactionDataMappable>().map(JSON: data)
 				self.from <- map["check.sender"]
+				break
+
+			case .declare:
+				self.data = Mapper<DeclareCandidacyTransactionDataMappable>().map(JSON: data)
+				break
+
+			case .setCandidateOnline:
+				self.data = Mapper<SetCandidateBaseTransactionDataMappable>().map(JSON: data)
+				break
+
+			case .setCandidateOffline:
+				self.data = Mapper<SetCandidateBaseTransactionDataMappable>().map(JSON: data)
+				break
+
+			case .editCandidate:
+				self.data = Mapper<EditCandidateTransactionDataMappable>().map(JSON: data)
 				break
 
 			default:
