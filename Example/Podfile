@@ -11,8 +11,8 @@ target 'MinterExplorer_Example' do
     inherit! :search_paths
 		pod 'MinterCore'
 		pod 'MinterExplorer', :path => '../'
-		pod 'Quick', '~> 1.2.0'
-		pod 'Nimble', '~> 7.0.2'
+		pod 'Quick'#, '~> 1.2.0'
+		pod 'Nimble'#, '~> 7.0.2'
 #    pod 'FBSnapshotTestCase' , '~> 2.1.4'
 #    pod 'Nimble-Snapshots' , '~> 6.3.0'
   end
@@ -22,7 +22,7 @@ post_install do |installer|
 	installer.pods_project.targets.each do |target|
 		if ['Nimble'].include? target.name
 			target.build_configurations.each do |config|
-				config.build_settings['SWIFT_VERSION'] = '3.2'
+#				config.build_settings['SWIFT_VERSION'] = '3.2'
 			end
 		end
 	end
