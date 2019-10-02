@@ -16,11 +16,16 @@ public class ExplorerAddressManager: BaseManager {
 	/// - SeeAlso: https://testnet.explorer.minter.network/help/index.html
 	/// - Parameters:
 	///   - address: Address with "Mx" prefix
+	///   - withSum: Should include total sums and USD representatives
 	///   - completion: Method which will be called after request finished
-	public func address(address: String, completion: (([String : Any]?, Error?) -> ())?) {
-		let url = MinterExplorerAPIURL.address(address: address).url()
+	public func address(address: String,
+											withSum: Bool = false,
+											completion: (([String: Any]?, Error?) -> ())?) {
 
-		self.httpClient.getRequest(url, parameters: nil) { (response, error) in
+		let url = MinterExplorerAPIURL.address(address: address).url()
+		//HACK: Can't change URLEncoding for now
+		self.httpClient.getRequest(url,
+															 parameters: ["withSum": withSum ? "true" : "false"] as [String: AnyObject]) { (response, error) in
 
 			var res: [String : Any]?
 			var err: Error?
@@ -29,13 +34,14 @@ public class ExplorerAddressManager: BaseManager {
 				completion?(res, err)
 			}
 
-			guard nil == error, let data = response.data as? [String : Any] else {
-				if nil == error {
-					err = BaseManagerError.badResponse
-				} else {
-					err = error
-				}
-				return
+			guard nil == error,
+				let data = response.data as? [String : Any] else {
+					if nil == error {
+						err = BaseManagerError.badResponse
+					} else {
+						err = error
+					}
+					return
 			}
 			res = data
 		}
@@ -46,13 +52,19 @@ public class ExplorerAddressManager: BaseManager {
 	- SeeAlso: https://testnet.explorer.minter.network/help/index.html
 	- Parameters:
 	- addresses: Addresses for which balance should be retreived
+	- withSum: Should include total sums and USD representatives
 	- completion: Method which will be called after request finished
 	- Precondition: each address in `addresses` should contain "Mx" prefix (e.g. Mx228e5a68b847d169da439ec15f727f08233a7ca6)
 	*/
-	public func addresses(addresses: [String], completion: (([[String : Any]]?, Error?) -> ())?) {
+	public func addresses(addresses: [String],
+												withSum: Bool = false,
+												completion: (([[String : Any]]?, Error?) -> ())?) {
 		let url = MinterExplorerAPIURL.addresses.url()
 
-		self.httpClient.getRequest(url, parameters: ["addresses" : addresses]) { (response, error) in
+		self.httpClient.getRequest(url,
+															 parameters: ["addresses" : addresses,
+																						"withSum": withSum ? "true" : "false"])
+		{ (response, error) in
 			var addresses: [[String : Any]]?
 			var err: Error?
 
@@ -60,13 +72,14 @@ public class ExplorerAddressManager: BaseManager {
 				completion?(addresses, err)
 			}
 
-			guard nil == error, let data = response.data as? [[String : Any]] else {
-				if nil == error {
-					err = BaseManagerError.badResponse
-				} else {
-					err = error
-				}
-				return
+			guard nil == error,
+				let data = response.data as? [[String : Any]] else {
+					if nil == error {
+						err = BaseManagerError.badResponse
+					} else {
+						err = error
+					}
+					return
 			}
 			addresses = data
 		}
@@ -87,8 +100,9 @@ public class ExplorerAddressManager: BaseManager {
 				completion?(resp, total, err)
 			}
 
-			guard let data = response.data as? [[String: Any]], error == nil else {
-				return
+			guard let data = response.data as? [[String: Any]],
+				error == nil else {
+					return
 			}
 
 			if let additional = response.meta?["additional"] as? [String: Any] {
@@ -96,7 +110,6 @@ public class ExplorerAddressManager: BaseManager {
 					total = Decimal(string: totalDelegated) ?? 0.0
 				}
 			}
-
 			resp = Mapper<AddressDelegationMappable>().mapArray(JSONArray: data)
 		}
 	}

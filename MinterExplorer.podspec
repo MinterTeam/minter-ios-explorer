@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'MinterExplorer'
-  s.version          = '0.1.13'
+  s.version          = '0.1.15'
   s.summary          = 'A short description of MinterExplorer.'
   s.description      = <<-DESC
 Minter Explorer SDK
@@ -14,7 +14,7 @@ Minter Explorer SDK
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '9.0'
-	s.swift_version = '4.2'
+  s.swift_version = '4.2'
 
   s.source_files = 'MinterExplorer/Classes/**/*'
   s.dependency 'MinterCore'

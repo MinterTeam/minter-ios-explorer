@@ -44,7 +44,7 @@ SPEC CHECKSUMS:
   BigInt: 76b5dfdfa3e2e478d4ffdf161aeede5502e2742f
   CryptoSwift: 769f58a9e89f64e8796c2e59ce5f002dc81a2438
   MinterCore: 936b9d42547c26a61689dbb81e75dec522a93b19
-  MinterExplorer: 7f59cb2fdf2e842dbcb43f7ee455f1068cf29b5f
+  MinterExplorer: 70eaab08988fd2c7cc37f8cedffa1f9d639ba4f9
   Nimble: 622629381bda1dd5678162f21f1368cec7cbba60
   ObjectMapper: 70187b8941977c62ccfb423caf6b50be405cabf0
   Quick: 4be43f6634acfa727dd106bdf3929ce125ffa79d
@@ -53,4 +53,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 6ae9ff758dc4e002425ae832efcf82f88bd5f685
 
-COCOAPODS: 1.6.2
+COCOAPODS: 1.7.5

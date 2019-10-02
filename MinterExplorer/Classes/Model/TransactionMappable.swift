@@ -21,12 +21,14 @@ open class Transaction {
 	public var data: TransactionData?
 	public var date: Date?
 	public var from: String?
+	public var payload: String?
 }
 
 /// Transaction Mapper
 class TransactionMappable: Transaction, Mappable {
 
-	private static let dateFormatter = DateFormatter(withFormat: "yyyy-MM-dd'T'HH:mm:ssZZZZZ", locale: Locale.current.identifier)
+	private static let dateFormatter = DateFormatter(withFormat: "yyyy-MM-dd'T'HH:mm:ssZZZZZ",
+																									 locale: Locale.current.identifier)
 
 	// MARK: - Mappable
 
@@ -39,6 +41,7 @@ class TransactionMappable: Transaction, Mappable {
 		self.type <- (map["type"], TransactionTypeTransformer())
 		self.txn <- map["txn"]
 		self.from <- map["from"]
+		self.payload <- map["payload"]
 
 		if nil != type, let data = map.JSON["data"] as? [String : Any] {
 			switch type! {
