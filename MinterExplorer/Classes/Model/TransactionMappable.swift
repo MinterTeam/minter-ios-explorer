@@ -89,6 +89,10 @@ class TransactionMappable: Transaction, Mappable {
 			case .editCandidate:
 				self.data = Mapper<EditCandidateTransactionDataMappable>().map(JSON: data)
 				break
+        
+      case .createMultisig:
+        self.data = Mapper<CreateMultisigAddressTransactionDataMappable>().map(JSON: data)
+        break
 
 			default:
 				break

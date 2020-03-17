@@ -217,7 +217,7 @@ internal class SetCandidateBaseTransactionDataMappable: SetCandidateBaseTransact
 
 	required public init?(map: Map) {
 		super.init()
-		
+
 		mapping(map: map)
 	}
 
@@ -251,3 +251,29 @@ internal class EditCandidateTransactionDataMappable: EditCandidateTransactionDat
 	}
 
 }
+
+public class CreateMultisigAddressTransactionData: TransactionData {
+  public var threshold: UInt?
+  public var weights: [UInt]?
+  public var addresses: [String]?
+  public var multisigAddress: String?
+}
+
+internal class CreateMultisigAddressTransactionDataMappable: CreateMultisigAddressTransactionData, Mappable {
+
+  // MARK: -
+
+  required public init?(map: Map) {
+    super.init()
+
+    mapping(map: map)
+  }
+
+  public func mapping(map: Map) {
+    threshold <- map["threshold"]
+    weights <- map["weights"]
+    addresses <- (map["addresses"], AddressTransformer())
+    multisigAddress <- map["multisig_address"]
+  }
+}
+
