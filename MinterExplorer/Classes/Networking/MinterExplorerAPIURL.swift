@@ -23,6 +23,7 @@ enum MinterExplorerAPIURL {
 	case address(address: String)
 	case addressDelegations(address: String)
 	case addresses
+	case addressStatisticsRewards(address: String)
 
 	case block(height: Int)
 	case blockTransaction(height: Int)
@@ -44,6 +45,9 @@ enum MinterExplorerAPIURL {
 
 		case .addresses:
 			return URL(string: MinterExplorerAPIBaseURL + "addresses")!
+			
+		case .addressStatisticsRewards(let address):
+			return URL(string: MinterExplorerAPIBaseURL + "addresses/" + address + "/statistics/rewards")!
 
 		// Coins
 		case .coins:

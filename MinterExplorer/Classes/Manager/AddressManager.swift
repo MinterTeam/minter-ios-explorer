@@ -113,4 +113,34 @@ public class ExplorerAddressManager: BaseManager {
 			resp = Mapper<AddressDelegationMappable>().mapArray(JSONArray: data)
 		}
 	}
+	
+	/// Method retreived address rewards per 24h
+	///
+	/// - Parameters:
+	///   - address: Address with "Mx" prefix
+	///   - completion: Method which will be called after request finished
+	public func statisticsRewards(address: String,
+																completion: (([[String : Any]]?, Error?) -> ())?) {
+		let url = MinterExplorerAPIURL.addressStatisticsRewards(address: address).url()
+
+		self.httpClient.getRequest(url, parameters: nil) { (response, error) in
+			var res: [[String : Any]]?
+			var err: Error?
+
+			defer {
+				completion?(res, err)
+			}
+
+			guard nil == error,
+				let data = response.data as? [[String : Any]] else {
+					if nil == error {
+						err = BaseManagerError.badResponse
+					} else {
+						err = error
+					}
+					return
+			}
+			res = data
+		}
+	}
 }
