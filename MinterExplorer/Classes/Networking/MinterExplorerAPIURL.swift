@@ -8,7 +8,7 @@
 import Foundation
 
 public let MinterExplorerBaseURL = MinterExplorerSDK.shared.webURL?.absoluteString
-public let MinterExplorerAPIBaseURL = (MinterExplorerSDK.shared.APIURL?.absoluteString ?? "") + "/api/v1/"
+public let MinterExplorerAPIBaseURL = (MinterExplorerSDK.shared.APIURL?.absoluteString ?? "") + "/api/v2/"
 public let MinterExplorerWebSocketURL = MinterExplorerSDK.shared.websocketURL
 
 enum MinterExplorerAPIURL {

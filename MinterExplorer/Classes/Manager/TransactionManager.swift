@@ -26,11 +26,11 @@ public class ExplorerTransactionManager : BaseManager {
 	- Precondition: each address in `addresses` should contain "Mx" prefix (e.g. Mx228e5a68b847d169da439ec15f727f08233a7ca6)
 	- Precondition: The result list can't contain more than 50 items
 	*/
-	public func transactions(addresses: [String], page: Int = 0, completion: (([MinterExplorer.Transaction]?, Error?) -> ())?) {
+  public func transactions(addresses: [String], page: Int = 0, perPage: Int = 10, completion: (([MinterExplorer.Transaction]?, Error?) -> ())?) {
 
 		let url = MinterExplorerAPIURL.transactions.url()
 
-		self.httpClient.getRequest(url, parameters: ["addresses" : addresses, "page" : page]) { (response, error) in
+    self.httpClient.getRequest(url, parameters: ["addresses": addresses, "page": page, "per_page": perPage]) { (response, error) in
 
 			var res: [MinterExplorer.Transaction]?
 			var err: Error?
@@ -44,7 +44,7 @@ public class ExplorerTransactionManager : BaseManager {
 				return
 			}
 
-			guard let jsonArray = response.data as? [[String : Any]] else {
+			guard let jsonArray = response.data as? [[String: Any]] else {
 				res = []
 				return
 			}
