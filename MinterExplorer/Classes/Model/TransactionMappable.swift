@@ -22,6 +22,8 @@ open class Transaction {
 	public var date: Date?
 	public var from: String?
 	public var payload: String?
+  public var block: Int?
+  public var fee: Decimal?
 }
 
 /// Transaction Mapper
@@ -41,7 +43,9 @@ class TransactionMappable: Transaction, Mappable {
 		self.type <- (map["type"], TransactionTypeTransformer())
 		self.txn <- map["txn"]
 		self.from <- map["from"]
-		self.payload <- map["payload"]
+    self.payload <- map["payload"]
+    self.fee <- (map["fee"], DecimalTransformer())
+    self.block <- map["height"]
 
 		if nil != type, let data = map.JSON["data"] as? [String : Any] {
 			switch type! {

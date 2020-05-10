@@ -30,12 +30,12 @@ internal class AddressDelegationMappable: AddressDelegation, Mappable {
 	}
 
 	func mapping(map: Map) {
-		validatorName <- map["validator_meta.name"]
-		validatorDesc <- map["validator_meta.description"]
-		validatorIconURL <- (map["validator_meta.icon_url"], URLTransform())
-		validatorSiteURL <- (map["validator_meta.site_url"], URLTransform())
+		validatorName <- map["validator.name"]
+		validatorDesc <- map["validator.description"]
+		validatorIconURL <- (map["validator.icon_url"], URLTransform())
+		validatorSiteURL <- (map["validator.site_url"], URLTransform())
+    publicKey <- map["validator.public_key"]
 		coin <- map["coin"]
-		publicKey <- map["pub_key"]
 		value <- (map["value"], DecimalTransformer())
 		bipValue <- (map["bip_value"], DecimalTransformer())
 	}

@@ -25,7 +25,7 @@ public class ExplorerAddressManager: BaseManager {
 		let url = MinterExplorerAPIURL.address(address: address).url()
 		//HACK: Can't change URLEncoding for now
 		self.httpClient.getRequest(url,
-															 parameters: ["withSum": withSum ? "true" : "false"] as [String: AnyObject]) { (response, error) in
+															 parameters: ["with_sum": withSum ? "true" : "false"] as [String: AnyObject]) { (response, error) in
 
 			var res: [String : Any]?
 			var err: Error?
@@ -63,7 +63,7 @@ public class ExplorerAddressManager: BaseManager {
 
 		self.httpClient.getRequest(url,
 															 parameters: ["addresses" : addresses,
-																						"withSum": withSum ? "true" : "false"])
+																						"with_sum": withSum ? "true" : "false"])
 		{ (response, error) in
 			var addresses: [[String : Any]]?
 			var err: Error?
@@ -89,6 +89,7 @@ public class ExplorerAddressManager: BaseManager {
 													page: Int = 1,
 													limit: Int = 50,
 													completion: (([AddressDelegation]?, Decimal?, Error?) -> ())?) {
+
 		let url = MinterExplorerAPIURL.addressDelegations(address: address).url()
 
 		self.httpClient.getRequest(url, parameters: ["page": page, "limit": limit]) { (response, error) in

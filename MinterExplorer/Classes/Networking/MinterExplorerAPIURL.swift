@@ -17,7 +17,7 @@ enum MinterExplorerAPIURL {
 
 	case balance(address: String)
 
-	case transactions
+  case transactions(address: String)
 	case transaction(hash: String)
 
 	case address(address: String)
@@ -27,6 +27,8 @@ enum MinterExplorerAPIURL {
 	case block(height: Int)
 	case blockTransaction(height: Int)
 	case blocks
+  
+  case validators
 
 	case status
 	case statusPage
@@ -55,8 +57,9 @@ enum MinterExplorerAPIURL {
 		case .transaction(let hash):
 			return URL(string: MinterExplorerAPIBaseURL + "transactions/" + hash.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!)!
 
-		case .transactions:
-			return URL(string: MinterExplorerAPIBaseURL + "transactions")!
+		case .transactions(let address):
+      let address = address.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+      return URL(string: MinterExplorerAPIBaseURL + "addresses/" + address  + "/transactions")!
 
 		// Blocks
 		case .block(let height):
@@ -67,6 +70,10 @@ enum MinterExplorerAPIURL {
 
 		case .blocks:
 			return URL(string: MinterExplorerAPIBaseURL + "blocks")!
+
+    //Validators
+    case .validators:
+      return URL(string: MinterExplorerAPIBaseURL + "validators")!
 
 		// Status
 		case .status:

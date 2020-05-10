@@ -8,7 +8,7 @@
 import Foundation
 import MinterCore
 
-public class ExplorerInfoManager : BaseManager {
+public class ExplorerInfoManager: BaseManager {
 
 	/// Method retreives status info from the Minter Explorer
 	///
