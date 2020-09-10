@@ -185,6 +185,7 @@ public class DeclareCandidacyTransactionData: TransactionData {
 	public var coin: String?
 	public var stake: Decimal?
 	public var address: String?
+  public var commission: Decimal?
 }
 
 internal class DeclareCandidacyTransactionDataMappable: DeclareCandidacyTransactionData, Mappable {
@@ -202,6 +203,7 @@ internal class DeclareCandidacyTransactionDataMappable: DeclareCandidacyTransact
 		coin <- map["coin"]
 		stake <- (map["stake"], DecimalTransformer())
 		address <- (map["address"], AddressTransformer())
+    commission <- (map["commission"], DecimalTransformer())
 	}
 
 }
@@ -246,8 +248,8 @@ internal class EditCandidateTransactionDataMappable: EditCandidateTransactionDat
 
 	public func mapping(map: Map) {
 		pubKey <- map["pub_key"]
-		rewardAddress <- (map["rewardAddress"], AddressTransformer())
-		ownerAddress <- (map["ownerAddress"], AddressTransformer())
+		rewardAddress <- (map["reward_address"], AddressTransformer())
+		ownerAddress <- (map["owner_address"], AddressTransformer())
 	}
 
 }
@@ -277,3 +279,30 @@ internal class CreateMultisigAddressTransactionDataMappable: CreateMultisigAddre
   }
 }
 
+public class CreateCoinTransactionData: TransactionData {
+  public var initialAmount: Decimal?
+  public var initialReserve: Decimal?
+  public var symbol: String?
+  public var name: String?
+  public var maxSupply: Decimal?
+  public var constantReserveRatio: Decimal?
+}
+
+internal class CreateCoinTransactionDataMappable: CreateCoinTransactionData, Mappable {
+
+  required public init?(map: Map) {
+    super.init()
+
+    mapping(map: map)
+  }
+
+  public func mapping(map: Map) {
+    initialAmount <- (map["initial_amount"], DecimalTransformer())
+    initialReserve <- (map["initial_reserve"], DecimalTransformer())
+    symbol <- map["symbol"]
+    name <- map["name"]
+    maxSupply <- (map["max_supply"], DecimalTransformer())
+    constantReserveRatio <- (map["constant_reserve_ratio"], DecimalTransformer())
+  }
+
+}

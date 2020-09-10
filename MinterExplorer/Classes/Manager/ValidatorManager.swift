@@ -50,13 +50,18 @@ public class PublicKeyTransformer: TransformType {
 //class PublicKeyTransformer:
 public struct ValidatorInfoResponse: Mappable {
 
+  public enum Status: Int {
+    case notReady = 1
+    case ready = 2
+  }
+
   public init?(map: Map) {
     mapping(map: map)
   }
 
   mutating public func mapping(map: Map) {
     publicKey <- (map["public_key"], PublicKeyTransformer())
-    status <- map["status"]
+    status <- (map["status"], EnumTransform<Status>())
     stake <- (map["stake"], DecimalTransformer())
     name <- map["name"]
     description <- map["description"]
@@ -64,10 +69,12 @@ public struct ValidatorInfoResponse: Mappable {
     siteURL <- (map["site_url"], URLTransform())
     part <- map["part"]
     delegatorsCount <- map["delegator_count"]
+    minStake <- (map["min_stake"], DecimalTransformer())
+    commission <- map["commission"]
   }
 
   public var publicKey: PublicKey?
-  public var status: Int?
+  public var status: Status = .notReady
   public var stake: Decimal?
   public var name: String?
   public var description: String?
@@ -75,6 +82,8 @@ public struct ValidatorInfoResponse: Mappable {
   public var siteURL: URL?
   public var part: Float?
   public var delegatorsCount: Int?
+  public var minStake: Decimal?
+  public var commission: Int?
 }
 
 /// Validator Manager
@@ -100,7 +109,7 @@ public class ValidatorManager: BaseManager {
         return
       }
 
-      let jsonArray = (response.data as? [[String : Any]] ?? [])
+      let jsonArray = (response.data as? [[String: Any]] ?? [])
       res = Mapper<ValidatorInfoResponse>().mapArray(JSONArray: jsonArray)
     }
   }

@@ -16,48 +16,6 @@ public enum ExplorerTransactionManagerError : Error {
 /// Transaction Manager
 public class ExplorerTransactionManager : BaseManager {
 
-	/**
-	Method recieves transaction list from the Minter Explorer server
-	- SeeAlso: https://testnet.explorer.minter.network/help/index.html
-	- Parameters:
-	- addresses: Addresses for which balance should be retreived
-  - sendType: Filter through transactions. Can be "incoming" or "outcoming"
-	- page: used for paging
-	- completion: Method which will be called after request finished
-	- Precondition: each address in `addresses` should contain "Mx" prefix (e.g. Mx228e5a68b847d169da439ec15f727f08233a7ca6)
-	- Precondition: The result list can't contain more than 50 items
-	*/
-//  public func transactions(addresses: [String], sendType: String?, page: Int = 0, perPage: Int = 20, completion: (([MinterExplorer.Transaction]?, Error?) -> ())?) {
-//
-//		let url = MinterExplorerAPIURL.transactions.url()
-//    var params: [String: Any] = ["addresses": addresses, "page": page, "limit": perPage]
-//    if let sendType = sendType {
-//      params["send_type"] = sendType
-//    }
-//    self.httpClient.getRequest(url, parameters: params) { (response, error) in
-//
-//			var res: [MinterExplorer.Transaction]?
-//			var err: Error?
-//
-//			defer {
-//				completion?(res, err)
-//			}
-//
-//			guard nil == error else {
-//				err = error
-//				return
-//			}
-//
-//			guard let jsonArray = response.data as? [[String: Any]] else {
-//				res = []
-//				return
-//			}
-//
-//			res = Mapper<MinterExplorer.TransactionMappable>().mapArray(JSONArray: jsonArray)
-//
-//		}
-//	}
-
   /**
   Method recieves transaction list from the Minter Explorer server
   - SeeAlso: https://testnet.explorer.minter.network/help/index.html
@@ -130,7 +88,6 @@ public class ExplorerTransactionManager : BaseManager {
 			}
 
 			transaction = Mapper<MinterExplorer.TransactionMappable>().map(JSON: jsonArray)
-
 		}
 	}
 }
