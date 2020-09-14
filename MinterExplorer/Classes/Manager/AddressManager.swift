@@ -11,6 +11,60 @@ import ObjectMapper
 
 /// Address Manager
 public class ExplorerAddressManager: BaseManager {
+
+  public enum BalanceResponseType {
+    case error(error: Error)
+    case response(_ response: BalanceResponse)
+  }
+
+  public struct BalanceResponse: Mappable {
+    public var address: String
+    public var balances: [BalanceResponseItem] = []
+    public var totalBalanceSum: Decimal?
+    public var totalBalanceSumUSD: Decimal?
+    public var stakeBalanceSum: Decimal?
+    public var stakeBalanceSumUSD: Decimal?
+
+    init?(address: String) {
+      guard address.isValidAddress() else { return nil }
+      self.address = address
+    }
+
+    public init?(map: Map) {
+      guard let address = (map.JSON["address"] as? String) else { return nil }
+      self.init(address: address)
+      mapping(map: map)
+    }
+
+    public mutating func mapping(map: Map) {
+      self.balances <- map["balances"]
+      self.totalBalanceSum <- (map["total_balance_sum"], DecimalTransformer())
+      self.totalBalanceSumUSD <- (map["total_balance_sum_usd"], DecimalTransformer())
+      self.stakeBalanceSum <- (map["stake_balance_sum"], DecimalTransformer())
+      self.stakeBalanceSumUSD <- (map["stake_balance_sum_usd"], DecimalTransformer())
+    }
+  }
+
+  public struct BalanceResponseItem: Mappable {
+    public var coin: Coin
+    public var amount: Decimal = 0.0
+    public var bipAmount: Decimal = 0.0
+
+    public init?(map: Map) {
+      guard let coin = Mapper<CoinMappable>().map(JSONObject: map.JSON["coin"]) else {
+        return nil
+      }
+      self.coin = coin
+      mapping(map: map)
+    }
+
+    public mutating func mapping(map: Map) {
+      self.amount <- (map["amount"], DecimalTransformer())
+      self.bipAmount <- (map["bip_amount"], DecimalTransformer())
+    }
+
+  }
+
 	/// Method retreived info about address
 	///
 	/// - SeeAlso: https://testnet.explorer.minter.network/help/index.html
@@ -20,30 +74,29 @@ public class ExplorerAddressManager: BaseManager {
 	///   - completion: Method which will be called after request finished
 	public func address(address: String,
 											withSum: Bool = false,
-											completion: (([String: Any]?, Error?) -> ())?) {
+                      completion: ((BalanceResponseType) -> ())?) {
 
 		let url = MinterExplorerAPIURL.address(address: address).url()
 		//HACK: Can't change URLEncoding for now
-		self.httpClient.getRequest(url,
-															 parameters: ["with_sum": withSum ? "true" : "false"] as [String: AnyObject]) { (response, error) in
+    let params = ["with_sum": withSum ? "true" : "false"] as [String: AnyObject]
+		self.httpClient.getRequest(url, parameters: params) { (response, error) in
 
-			var res: [String : Any]?
-			var err: Error?
-
+      var responseType: BalanceResponseType
+                                
 			defer {
-				completion?(res, err)
+				completion?(responseType)
 			}
 
-			guard nil == error,
-				let data = response.data as? [String : Any] else {
-					if nil == error {
-						err = BaseManagerError.badResponse
-					} else {
-						err = error
-					}
-					return
-			}
-			res = data
+			guard nil == error else {
+        responseType = .error(error: error!)
+        return
+      }
+
+      guard let data = Mapper<BalanceResponse>().map(JSONObject: response.data) else {
+        responseType = .error(error: error!)
+        return
+      }
+      responseType = .response(data)
 		}
 	}
 

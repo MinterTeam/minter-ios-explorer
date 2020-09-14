@@ -24,7 +24,7 @@ open class Transaction {
 	public var payload: String?
   public var block: Int?
   public var fee: Decimal?
-  public var feeCoin: String?
+  public var feeCoin: Coin?
 }
 
 /// Transaction Mapper
@@ -47,7 +47,7 @@ class TransactionMappable: Transaction, Mappable {
     self.payload <- map["payload"]
     self.fee <- (map["fee"], DecimalTransformer())
     self.block <- map["height"]
-    self.feeCoin <- map["gas_coin"]
+    self.feeCoin = Mapper<CoinMappable>().map(JSONObject: map.JSON["gas_coin"])
 
 		if nil != type, let data = map.JSON["data"] as? [String: Any] {
 			switch type! {
@@ -103,9 +103,6 @@ class TransactionMappable: Transaction, Mappable {
       case .createMultisig:
         self.data = Mapper<CreateMultisigAddressTransactionDataMappable>().map(JSON: data)
         break
-
-			default:
-				break
 			}
 		}
 		self.date <- (map["timestamp"], DateFormatterTransform(dateFormatter: TransactionMappable.dateFormatter))
