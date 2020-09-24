@@ -14,10 +14,11 @@ public class AddressDelegation {
 	public var validatorDesc: String?
 	public var validatorIconURL: URL?
 	public var validatorSiteURL: URL?
-	public var coin: String?
+	public var coin: Coin?
 	public var publicKey: String?
 	public var value: Decimal?
 	public var bipValue: Decimal?
+  public var isKicked: Bool?
 }
 
 internal class AddressDelegationMappable: AddressDelegation, Mappable {
@@ -35,8 +36,9 @@ internal class AddressDelegationMappable: AddressDelegation, Mappable {
 		validatorIconURL <- (map["validator.icon_url"], URLTransform())
 		validatorSiteURL <- (map["validator.site_url"], URLTransform())
     publicKey <- map["validator.public_key"]
-		coin <- map["coin"]
+    coin = Mapper<CoinMappable>().map(JSONObject: map.JSON["coin"])
 		value <- (map["value"], DecimalTransformer())
 		bipValue <- (map["bip_value"], DecimalTransformer())
+    isKicked <- map["is_kicked"]
 	}
 }

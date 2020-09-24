@@ -10,7 +10,7 @@ import MinterCore
 import ObjectMapper
 
 /// Coin Manager
-public class ExplorerCoinManager : BaseManager {
+public class ExplorerCoinManager: BaseManager {
 
 	/// Method retreives coins from Explorer
 	///
