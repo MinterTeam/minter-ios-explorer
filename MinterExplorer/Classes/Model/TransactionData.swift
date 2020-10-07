@@ -117,13 +117,13 @@ internal class SellAllCoinsTransactionDataMappable: SellAllCoinsTransactionData,
 }
 
 public protocol DelegatableUnbondableTransactionData: class {
-	var pubKey: String? {get set}
+	var publicKey: String? {get set}
 	var coin: Coin? {get set}
 	var value: Decimal? {get set}
 }
 
 public class DelegateTransactionData: TransactionData, DelegatableUnbondableTransactionData {
-	public var pubKey: String?
+	public var publicKey: String?
 	public var coin: Coin?
 	public var value: Decimal?
 }
@@ -137,14 +137,14 @@ internal class DelegateTransactionDataMappable: DelegateTransactionData, Mappabl
 	}
 
 	public func mapping(map: Map) {
-		pubKey <- map["pub_key"]
+    publicKey <- map["pub_key"]
 		coin = Mapper<CoinMappable>().map(JSONObject: map.JSON["coin"])
 		value <- (map["value"], DecimalTransformer())
 	}
 }
 
 public class UnbondTransactionData: TransactionData, DelegatableUnbondableTransactionData {
-	public var pubKey: String?
+	public var publicKey: String?
 	public var coin: Coin?
 	public var value: Decimal?
 }
@@ -181,7 +181,7 @@ internal class RedeemCheckRawTransactionDataMappable: RedeemCheckRawTransactionD
 
 /// DeclareCandidacyRawTransactionData class
 public class DeclareCandidacyTransactionData: TransactionData {
-	public var pubKey: String?
+	public var publicKey: String?
 	public var coin: Coin?
 	public var stake: Decimal?
 	public var address: String?
@@ -199,7 +199,7 @@ internal class DeclareCandidacyTransactionDataMappable: DeclareCandidacyTransact
 	}
 
 	public func mapping(map: Map) {
-		pubKey <- map["pub_key"]
+    publicKey <- map["pub_key"]
 		coin = Mapper<CoinMappable>().map(JSONObject: map.JSON["coin"])
 		stake <- (map["stake"], DecimalTransformer())
 		address <- (map["address"], AddressTransformer())
@@ -210,7 +210,7 @@ internal class DeclareCandidacyTransactionDataMappable: DeclareCandidacyTransact
 
 ///  SetCandidateBaseTransactionData class
 public class SetCandidateBaseTransactionData: TransactionData {
-	public var pubKey: String?
+	public var publicKey: String?
 }
 
 internal class SetCandidateBaseTransactionDataMappable: SetCandidateBaseTransactionData, Mappable {
@@ -224,14 +224,14 @@ internal class SetCandidateBaseTransactionDataMappable: SetCandidateBaseTransact
 	}
 
 	public func mapping(map: Map) {
-		pubKey <- map["pub_key"]
+    publicKey <- map["pub_key"]
 	}
 
 }
 
 /// EditCandidateTransactionData class
 public class EditCandidateTransactionData: TransactionData {
-	public var pubKey: String?
+	public var publicKey: String?
 	public var rewardAddress: String?
 	public var ownerAddress: String?
 }
@@ -247,7 +247,7 @@ internal class EditCandidateTransactionDataMappable: EditCandidateTransactionDat
 	}
 
 	public func mapping(map: Map) {
-		pubKey <- map["pub_key"]
+    publicKey <- map["pub_key"]
 		rewardAddress <- (map["reward_address"], AddressTransformer())
 		ownerAddress <- (map["owner_address"], AddressTransformer())
 	}
@@ -285,7 +285,7 @@ public class CreateCoinTransactionData: TransactionData {
   public var symbol: String?
   public var name: String?
   public var maxSupply: Decimal?
-  public var constantReserveRatio: Decimal?
+  public var constantReserveRatio: Int?
 }
 
 internal class CreateCoinTransactionDataMappable: CreateCoinTransactionData, Mappable {
@@ -302,7 +302,108 @@ internal class CreateCoinTransactionDataMappable: CreateCoinTransactionData, Map
     symbol <- map["symbol"]
     name <- map["name"]
     maxSupply <- (map["max_supply"], DecimalTransformer())
-    constantReserveRatio <- (map["constant_reserve_ratio"], DecimalTransformer())
+    constantReserveRatio <- map["constant_reserve_ratio"]
+  }
+
+}
+
+public class RecreateCoinTransactionData: CreateCoinTransactionData {}
+
+internal class RecreateCoinTransactionDataMappable: RecreateCoinTransactionData, Mappable {
+
+  required public init?(map: Map) {
+    super.init()
+
+    mapping(map: map)
+  }
+
+  public func mapping(map: Map) {
+    initialAmount <- (map["initial_amount"], DecimalTransformer())
+    initialReserve <- (map["initial_reserve"], DecimalTransformer())
+    symbol <- map["symbol"]
+    name <- map["name"]
+    maxSupply <- (map["max_supply"], DecimalTransformer())
+    constantReserveRatio <- map["constant_reserve_ratio"]
+  }
+
+}
+
+public class SetHaltBlockTransactionData: TransactionData {
+  public var publicKey: String?
+  public var height: UInt?
+}
+
+internal class SetHaltBlockTransactionDataMappable: SetHaltBlockTransactionData, Mappable {
+
+  required public init?(map: Map) {
+    super.init()
+
+    mapping(map: map)
+  }
+
+  public func mapping(map: Map) {
+    publicKey <- map["pub_key"]
+    height <- map["height"]
+  }
+
+}
+
+public class PriceVoteTransactionData: TransactionData {
+  public var price: Decimal?
+}
+
+internal class PriceVoteTransactionDataMappable: PriceVoteTransactionData, Mappable {
+
+  required public init?(map: Map) {
+    super.init()
+
+    mapping(map: map)
+  }
+
+  public func mapping(map: Map) {
+    price <- (map["price"], DecimalTransformer())
+  }
+
+}
+
+public class ChangeCoinOwnerTransactionData: TransactionData {
+  public var coinSymbol: String?
+  public var owner: String?
+}
+
+internal class ChangeCoinOwnerTransactionDataMappable: ChangeCoinOwnerTransactionData, Mappable {
+
+  required public init?(map: Map) {
+    super.init()
+
+    mapping(map: map)
+  }
+
+  public func mapping(map: Map) {
+    coinSymbol <- map["symbol"]
+    owner <- map["new_owner"]
+  }
+
+}
+
+public class EditMultisigOwnderTransactionData: TransactionData {
+  public var threshold: Int?
+  public var weights: [Int]?
+  public var addresses: [String]?
+}
+
+internal class EditMultisigOwnderTransactionDataMappable: EditMultisigOwnderTransactionData, Mappable {
+
+  required public init?(map: Map) {
+    super.init()
+
+    mapping(map: map)
+  }
+
+  public func mapping(map: Map) {
+    threshold <- map["threshold"]
+    weights <- map["weights"]
+    addresses <- map["addresses"]
   }
 
 }
