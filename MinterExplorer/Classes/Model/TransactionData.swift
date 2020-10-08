@@ -185,7 +185,7 @@ public class DeclareCandidacyTransactionData: TransactionData {
 	public var coin: Coin?
 	public var stake: Decimal?
 	public var address: String?
-  public var commission: Decimal?
+  public var commission: Int?
 }
 
 internal class DeclareCandidacyTransactionDataMappable: DeclareCandidacyTransactionData, Mappable {
@@ -203,7 +203,7 @@ internal class DeclareCandidacyTransactionDataMappable: DeclareCandidacyTransact
 		coin = Mapper<CoinMappable>().map(JSONObject: map.JSON["coin"])
 		stake <- (map["stake"], DecimalTransformer())
 		address <- (map["address"], AddressTransformer())
-    commission <- (map["commission"], DecimalTransformer())
+    commission <- map["commission"]
 	}
 
 }

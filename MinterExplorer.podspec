@@ -1,17 +1,16 @@
 Pod::Spec.new do |s|
   s.name             = 'MinterExplorer'
-  s.version          = '1.2.0'
+  s.version          = '1.2.1'
   s.summary          = 'A short description of MinterExplorer.'
   s.description      = <<-DESC
 Minter Explorer SDK
                        DESC
 
   s.homepage         = 'https://github.com/MinterTeam/minter-ios-explorer'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'sidorov.panda' => 'ody344@gmail.com' }
   s.source           = { :git => 'https://github.com/MinterTeam/minter-ios-explorer.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.social_media_url = 'https://medium.com/@MinterTeam'
 
   s.ios.deployment_target = '9.0'
   s.swift_version = '4.2'
