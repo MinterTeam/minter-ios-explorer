@@ -11,10 +11,8 @@ Minter Explorer SDK
   s.author           = { 'sidorov.panda' => 'ody344@gmail.com' }
   s.source           = { :git => 'https://github.com/MinterTeam/minter-ios-explorer.git', :tag => s.version.to_s }
   s.social_media_url = 'https://medium.com/@MinterTeam'
-
   s.ios.deployment_target = '9.0'
   s.swift_version = '4.2'
-
   s.source_files = 'MinterExplorer/Classes/**/*'
   s.dependency 'MinterCore'
 end
