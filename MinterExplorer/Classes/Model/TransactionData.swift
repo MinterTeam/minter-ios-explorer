@@ -234,6 +234,7 @@ public class EditCandidateTransactionData: TransactionData {
 	public var publicKey: String?
 	public var rewardAddress: String?
 	public var ownerAddress: String?
+  public var controlAddress: String?
 }
 
 internal class EditCandidateTransactionDataMappable: EditCandidateTransactionData, Mappable {
@@ -250,7 +251,31 @@ internal class EditCandidateTransactionDataMappable: EditCandidateTransactionDat
     publicKey <- map["pub_key"]
 		rewardAddress <- (map["reward_address"], AddressTransformer())
 		ownerAddress <- (map["owner_address"], AddressTransformer())
+    controlAddress <- (map["control_address"], AddressTransformer())
 	}
+
+}
+
+/// EditCandidatePublicKeyTransactionData class
+public class EditCandidatePublicKeyTransactionData: TransactionData {
+  public var publicKey: String?
+  public var newPublicKey: String?
+}
+
+internal class EditCandidatePublicKeyTransactionDataMappable: EditCandidatePublicKeyTransactionData, Mappable {
+
+  // MARK: -
+
+  required public init?(map: Map) {
+    super.init()
+
+    mapping(map: map)
+  }
+
+  public func mapping(map: Map) {
+    publicKey <- map["pub_key"]
+    newPublicKey <- map["new_pub_key"]
+  }
 
 }
 

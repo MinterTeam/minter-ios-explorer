@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'MinterExplorer'
-  s.version          = '1.2.1'
+  s.version          = '1.2.3'
   s.summary          = 'A short description of MinterExplorer.'
   s.description      = <<-DESC
 Minter Explorer SDK
