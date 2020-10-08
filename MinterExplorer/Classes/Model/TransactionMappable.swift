@@ -88,6 +88,9 @@ class TransactionMappable: Transaction, Mappable {
 			case .editCandidate:
 				self.data = Mapper<EditCandidateTransactionDataMappable>().map(JSON: data)
 
+      case .editCandidatePublicKey:
+        self.data = Mapper<EditCandidatePublicKeyTransactionDataMappable>().map(JSON: data)
+
       case .createMultisigAddress:
         self.data = Mapper<CreateMultisigAddressTransactionDataMappable>().map(JSON: data)
 
