@@ -54,12 +54,12 @@ internal class MultisendCoinTransactionDataMappable: MultisendCoinTransactionDat
 
 	public func mapping(map: Map) {
 
-		if let list = map.JSON["list"] as? [[String : String]] {
+		if let list = map.JSON["list"] as? [[String: Any]] {
 
 			values = list.map { (val) -> MultisendValues in
         let coin = Mapper<CoinMappable>().map(JSONObject: val["coin"]) ?? Coin.baseCoin()
-				let to = val["to"] ?? ""
-				let value = Decimal(string: val["value"] ?? "") ?? 0.0
+				let to = (val["to"] as? String) ?? ""
+				let value = Decimal(string: (val["value"] as? String) ?? "") ?? 0.0
 				return MultisendValues(coin: coin, to: to, value: value)
 			}
 		}

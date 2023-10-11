@@ -51,7 +51,7 @@ class TransactionMappable: Transaction, Mappable {
 
 		if nil != type, let data = map.JSON["data"] as? [String: Any] {
 			switch type! {
-			case .sellCoin, .buyCoin:
+			case .sellCoin, .buyCoin, .buySwap, .sellSwap, .sellAllSwap:
 				self.data = Mapper<ConvertTransactionDataMappable>().map(JSON: data)
 
       case .createCoin:

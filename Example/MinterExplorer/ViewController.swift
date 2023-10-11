@@ -20,7 +20,7 @@ class ViewController: UIViewController {
 	
 	private var infoManager: MinterExplorer.ExplorerInfoManager?
 	
-	private var blockManager: MinterExplorer.ExplorerBlockManager?
+	private var blockManager: MinterExplorer.BlockManager?
 	
 	private var coinManager: MinterExplorer.ExplorerCoinManager?
 	
@@ -109,7 +109,7 @@ class ViewController: UIViewController {
 //		})
 //
 //
-		blockManager = ExplorerBlockManager(httpClient: http)
+		blockManager = BlockManager(httpClient: http)
 		blockManager?.block(height: 1, completion: { (block, error) in
 			print(block ?? "")
 			print(error ?? "")
