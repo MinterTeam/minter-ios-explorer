@@ -16,7 +16,7 @@ open class Transaction {
 	public init() {}
 
 	public var hash: String?
-	public var type: TransactionType?
+	public var type: RawTransactionType?
 	public var txn: Int?
 	public var data: TransactionData?
 	public var date: Date?
@@ -24,7 +24,7 @@ open class Transaction {
 	public var payload: String?
   public var block: Int?
   public var fee: Decimal?
-  public var feeCoin: String?
+  public var feeCoin: Coin?
 }
 
 /// Transaction Mapper
@@ -47,67 +47,70 @@ class TransactionMappable: Transaction, Mappable {
     self.payload <- map["payload"]
     self.fee <- (map["fee"], DecimalTransformer())
     self.block <- map["height"]
-    self.feeCoin <- map["gas_coin"]
+    self.feeCoin = Mapper<CoinMappable>().map(JSONObject: map.JSON["gas_coin"])
 
 		if nil != type, let data = map.JSON["data"] as? [String: Any] {
 			switch type! {
-			case .sell, .buy:
+			case .sellCoin, .buyCoin, .buySwap, .sellSwap, .sellAllSwap:
 				self.data = Mapper<ConvertTransactionDataMappable>().map(JSON: data)
-				break
 
       case .createCoin:
         self.data = Mapper<CreateCoinTransactionDataMappable>().map(JSON: data)
-        break
 
-			case .send:
+			case .sendCoin:
 				self.data = Mapper<SendCoinTransactionDataMappable>().map(JSON: data)
-				break
 
 			case .multisend:
 				self.data = Mapper<MultisendCoinTransactionDataMappable>().map(JSON: data)
-				break
 
-			case .sellAll:
+			case .sellAllCoins:
 				self.data = Mapper<SellAllCoinsTransactionDataMappable>().map(JSON: data)
-				break
 
 			case .delegate:
 				self.data = Mapper<DelegateTransactionDataMappable>().map(JSON: data)
-				break
 
 			case .unbond:
 				self.data = Mapper<UnbondTransactionDataMappable>().map(JSON: data)
-				break
 
 			case .redeemCheck:
 				self.data = Mapper<RedeemCheckRawTransactionDataMappable>().map(JSON: data)
 				self.from <- map["check.sender"]
-				break
 
-			case .declare:
+			case .declareCandidacy:
 				self.data = Mapper<DeclareCandidacyTransactionDataMappable>().map(JSON: data)
-				break
 
 			case .setCandidateOnline:
 				self.data = Mapper<SetCandidateBaseTransactionDataMappable>().map(JSON: data)
-				break
 
 			case .setCandidateOffline:
 				self.data = Mapper<SetCandidateBaseTransactionDataMappable>().map(JSON: data)
-				break
 
 			case .editCandidate:
 				self.data = Mapper<EditCandidateTransactionDataMappable>().map(JSON: data)
-				break
 
-      case .createMultisig:
+      case .editCandidatePublicKey:
+        self.data = Mapper<EditCandidatePublicKeyTransactionDataMappable>().map(JSON: data)
+
+      case .createMultisigAddress:
         self.data = Mapper<CreateMultisigAddressTransactionDataMappable>().map(JSON: data)
-        break
 
-			default:
-				break
-			}
+      case .setHaltBlock:
+        self.data = Mapper<SetHaltBlockTransactionDataMappable>().map(JSON: data)
+
+      case .recreateCoin:
+        self.data = Mapper<RecreateCoinTransactionDataMappable>().map(JSON: data)
+
+      case .changeCoinOwner:
+        self.data = Mapper<ChangeCoinOwnerTransactionDataMappable>().map(JSON: data)
+
+      case .editMultisigOwner:
+        self.data = Mapper<EditMultisigOwnderTransactionDataMappable>().map(JSON: data)
+
+      case .priceVote:
+        self.data = Mapper<PriceVoteTransactionDataMappable>().map(JSON: data)
+      }
 		}
+
 		self.date <- (map["timestamp"], DateFormatterTransform(dateFormatter: TransactionMappable.dateFormatter))
 	}
 

@@ -10,14 +10,11 @@ import MinterCore
 import ObjectMapper
 
 public class AddressDelegation {
-	public var validatorName: String?
-	public var validatorDesc: String?
-	public var validatorIconURL: URL?
-	public var validatorSiteURL: URL?
-	public var coin: String?
-	public var publicKey: String?
+  public var validator: Validator?
+	public var coin: Coin?
 	public var value: Decimal?
 	public var bipValue: Decimal?
+  public var isWaitlisted: Bool?
 }
 
 internal class AddressDelegationMappable: AddressDelegation, Mappable {
@@ -26,17 +23,15 @@ internal class AddressDelegationMappable: AddressDelegation, Mappable {
 
 	required init?(map: Map) {
 		super.init()
+
 		mapping(map: map)
 	}
 
 	func mapping(map: Map) {
-		validatorName <- map["validator.name"]
-		validatorDesc <- map["validator.description"]
-		validatorIconURL <- (map["validator.icon_url"], URLTransform())
-		validatorSiteURL <- (map["validator.site_url"], URLTransform())
-    publicKey <- map["validator.public_key"]
-		coin <- map["coin"]
+    validator = Mapper<ValidatorMappable>().map(JSONObject: map.JSON["validator"])
+    coin = Mapper<CoinMappable>().map(JSONObject: map.JSON["coin"])
 		value <- (map["value"], DecimalTransformer())
 		bipValue <- (map["bip_value"], DecimalTransformer())
+    isWaitlisted <- map["is_waitlisted"]
 	}
 }

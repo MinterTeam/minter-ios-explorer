@@ -2,18 +2,18 @@ PODS:
   - Alamofire (4.7.3)
   - BigInt (3.1.0):
     - SipHash (~> 1.2)
-  - CryptoSwift (0.15.0)
-  - MinterCore (0.1.22):
+  - CryptoSwift (1.3.2)
+  - MinterCore (1.2.2):
     - Alamofire (= 4.7.3)
     - BigInt (~> 3.0)
-    - CryptoSwift (~> 0.9)
+    - CryptoSwift (~> 1.0)
     - ObjectMapper (~> 3.1)
     - secp256k1.swift (~> 0.1)
-  - MinterExplorer (0.1.13):
+  - MinterExplorer (1.2.4):
     - MinterCore
-  - Nimble (8.0.2)
-  - ObjectMapper (3.5.1)
-  - Quick (2.1.0)
+  - Nimble (9.0.0)
+  - ObjectMapper (3.5.3)
+  - Quick (3.0.0)
   - secp256k1.swift (0.1.4)
   - SipHash (1.2.2)
 
@@ -24,7 +24,7 @@ DEPENDENCIES:
   - Quick
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - Alamofire
     - BigInt
     - CryptoSwift
@@ -42,15 +42,15 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   BigInt: 76b5dfdfa3e2e478d4ffdf161aeede5502e2742f
-  CryptoSwift: 769f58a9e89f64e8796c2e59ce5f002dc81a2438
-  MinterCore: 936b9d42547c26a61689dbb81e75dec522a93b19
-  MinterExplorer: 70eaab08988fd2c7cc37f8cedffa1f9d639ba4f9
-  Nimble: 622629381bda1dd5678162f21f1368cec7cbba60
-  ObjectMapper: 70187b8941977c62ccfb423caf6b50be405cabf0
-  Quick: 4be43f6634acfa727dd106bdf3929ce125ffa79d
+  CryptoSwift: 093499be1a94b0cae36e6c26b70870668cb56060
+  MinterCore: 14cc91d56b3ba0bbb00184fbab6a94260404b6bb
+  MinterExplorer: b0e719917063fe8dd743dfa12cddb08550d04ea2
+  Nimble: 3b4ec3fd40f1dc178058e0981107721c615643d8
+  ObjectMapper: 97111c97e054a6ee25917662106689f0b4127b37
+  Quick: 6d9559f40647bc4d510103842ef2fdd882d753e2
   secp256k1.swift: a7e7a214f6db6ce5db32cc6b2b45e5c4dd633634
   SipHash: fad90a4683e420c52ef28063063dbbce248ea6d4
 
 PODFILE CHECKSUM: 6ae9ff758dc4e002425ae832efcf82f88bd5f685
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.9.3

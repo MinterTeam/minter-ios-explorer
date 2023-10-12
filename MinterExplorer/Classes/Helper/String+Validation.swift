@@ -1,13 +1,12 @@
 //
 //  String+Validation.swift
-//  MinterExplorer
+//  MinterCore
 //
 //  Created by Alexey Sidorov on 16.04.2020.
 //
 
 import Foundation
 
-//TODO: Move to Core
 extension String {
 
   func isValidAddress() -> Bool {

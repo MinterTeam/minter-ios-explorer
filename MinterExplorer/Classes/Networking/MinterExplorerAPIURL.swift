@@ -14,11 +14,15 @@ public let MinterExplorerWebSocketURL = MinterExplorerSDK.shared.websocketURL
 enum MinterExplorerAPIURL {
 
 	case coins
+  case verifiedCoins
 
 	case balance(address: String)
 
   case transactions(address: String)
 	case transaction(hash: String)
+
+  case route(from: String, to: String)
+  case estimate(from: String, to: String)
 
 	case address(address: String)
 	case addressDelegations(address: String)
@@ -51,6 +55,9 @@ enum MinterExplorerAPIURL {
 		case .coins:
 			return URL(string: MinterExplorerAPIBaseURL + "coins")!
 
+    case .verifiedCoins:
+      return URL(string: MinterExplorerAPIBaseURL + "coins/oracle/verified")!
+
 		case .balance(let address):
 			return URL(string: MinterExplorerAPIBaseURL + "balance/" + address.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!)!
 
@@ -60,6 +67,12 @@ enum MinterExplorerAPIURL {
 		case .transactions(let address):
       let address = address.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
       return URL(string: MinterExplorerAPIBaseURL + "addresses/" + address  + "/transactions")!
+
+    case .route(let from, let to):
+      return URL(string: MinterExplorerAPIBaseURL + "pools/coins/\(from)/\(to)/route")!
+
+    case .estimate(let from, let to):
+      return URL(string: MinterExplorerAPIBaseURL + "pools/coins/\(from)/\(to)/estimate")!
 
 		// Blocks
 		case .block(let height):
